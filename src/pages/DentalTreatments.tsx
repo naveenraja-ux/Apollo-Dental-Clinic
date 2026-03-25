@@ -82,16 +82,52 @@ export default function DentalTreatments() {
   return (
     <div className="bg-white min-h-screen">
       {/* Section 1: Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center bg-[#0f172c] overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <img
-            src="https://images.unsplash.com/photo-1606811841660-1b5168c34715?auto=format&fit=crop&q=80&w=2070"
-            alt="Dental Background"
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
+      <section className="relative min-h-[92vh] flex items-center bg-[#0f172c] overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 z-0">
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute inset-0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1606811841660-1b5168c34715?auto=format&fit=crop&q=80&w=2070"
+              alt="Dental Background"
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f172c] via-[#0f172c]/80 to-transparent" />
+          
+          {/* Floating Particles */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{
+                y: [0, -80, 0],
+                x: [0, 40, 0],
+                opacity: [0, 0.3, 0],
+              }}
+              transition={{
+                duration: 8 + Math.random() * 8,
+                repeat: Infinity,
+                delay: Math.random() * 4,
+              }}
+              className="absolute w-1 h-1 bg-primary-light rounded-full"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172c] via-[#0f172c]/80 to-transparent" />
         
         <div className="container-custom relative z-10 pt-10 pb-24">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">

@@ -25,21 +25,62 @@ import {
   Tag
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
+import { useEnrollModal } from '../hooks/useEnrollModal';
 
 export default function Academy() {
+  const { onOpen: onEnrollOpen } = useEnrollModal();
+
   return (
     <div className="">
       {/* Hero */}
-      <section className="relative py-24 bg-slate-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <img
-            src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&q=80&w=2070"
-            alt="Academy"
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
+      <section className="relative py-32 md:py-40 bg-slate-900 text-white overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 z-0">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute inset-0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&q=80&w=2070"
+              alt="Academy"
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+          
+          {/* Floating Particles */}
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{
+                y: [0, -100, 0],
+                x: [0, 50, 0],
+                opacity: [0, 0.4, 0],
+              }}
+              transition={{
+                duration: 10 + Math.random() * 10,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+              }}
+              className="absolute w-1 h-1 bg-primary-light rounded-full"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+
         <div className="container-custom relative z-10">
           <div className="max-w-4xl">
             <motion.div 
@@ -69,10 +110,30 @@ export default function Academy() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-slate-300 leading-relaxed max-w-2xl"
+              className="text-xl text-slate-300 leading-relaxed max-w-2xl mb-10"
             >
               Join India's premier training institute for Permanent Makeup and Clinical Cosmetology. Learn from industry experts and gain hands-on experience.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-wrap gap-4"
+            >
+              <button 
+                onClick={onEnrollOpen}
+                className="px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all shadow-xl shadow-primary/20 flex items-center gap-2 cursor-pointer"
+              >
+                Enroll Now <ArrowRight className="w-5 h-5" />
+              </button>
+              <a 
+                href="#courses" 
+                className="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all"
+              >
+                Explore Courses
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>

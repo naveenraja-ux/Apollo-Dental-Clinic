@@ -37,6 +37,7 @@ import {
   FlaskConical
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useEnrollModal } from '../hooks/useEnrollModal';
 import SectionHeader from '../components/ui/SectionHeader';
 import ServiceCard from '../components/ui/ServiceCard';
 
@@ -128,6 +129,8 @@ export default function Home() {
     setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  const { onOpen: onEnrollOpen } = useEnrollModal();
+
   return (
     <div className="overflow-hidden">
       {/* Lightbox Modal */}
@@ -173,7 +176,7 @@ export default function Home() {
         )}
       </AnimatePresence>
       {/* SECTION 1 — HERO SECTION (Premium Layered Clinical Aesthetic) */}
-      <section ref={heroRef} className="relative h-screen w-full flex items-center justify-center bg-[#f8fafc] overflow-hidden">
+      <section ref={heroRef} className="relative h-[105vh] w-full flex items-center justify-center bg-[#f8fafc] overflow-hidden">
         {/* 1. Background Enhancement Layer */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Soft Radial Gradient (Center light -> Edges slightly darker) */}
@@ -182,21 +185,39 @@ export default function Home() {
           {/* Subtle Purple-Blue Gradient Blobs (5-10% opacity, blurred) */}
           <motion.div 
             animate={{ 
-              x: [0, 80, 0],
-              y: [0, -60, 0],
-              scale: [1, 1.3, 1],
+              x: [0, 100, -50, 0],
+              y: [0, -80, 40, 0],
+              scale: [1, 1.4, 0.9, 1],
             }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-primary/10 blur-[120px] rounded-full" 
+            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[-15%] left-[-15%] w-[70vw] h-[70vw] bg-primary/10 blur-[140px] rounded-full" 
           />
           <motion.div 
             animate={{ 
-              x: [0, -100, 0],
-              y: [0, 80, 0],
-              scale: [1.3, 1, 1.3],
+              x: [0, -120, 60, 0],
+              y: [0, 100, -50, 0],
+              scale: [1.4, 0.9, 1.2, 1.4],
             }}
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-[-10%] right-[-10%] w-[65vw] h-[65vw] bg-indigo-400/10 blur-[140px] rounded-[45%]" 
+            transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute bottom-[-15%] right-[-15%] w-[75vw] h-[75vw] bg-indigo-400/10 blur-[160px] rounded-[45%]" 
+          />
+
+          {/* Floating Premium Shapes */}
+          <motion.div
+            animate={{
+              y: [0, -60, 0],
+              rotate: [0, 360],
+            }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            className="absolute top-[20%] left-[10%] w-96 h-96 border border-primary/5 rounded-full"
+          />
+          <motion.div
+            animate={{
+              y: [0, 60, 0],
+              rotate: [360, 0],
+            }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-[10%] right-[5%] w-[30rem] h-[30rem] border border-indigo-500/5 rounded-[30%]"
           />
 
           {/* Glass Shapes / Soft Blur Circles - More prominent for premium feel */}
@@ -228,24 +249,50 @@ export default function Home() {
           />
           
           {/* Floating Particles (Blur Dots) */}
-          {[...Array(12)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               animate={{
-                y: [0, -80, 0],
-                x: [0, 40, 0],
-                opacity: [0.1, 0.5, 0.1],
+                y: [0, -120, 0],
+                x: [0, 60, 0],
+                opacity: [0.1, 0.6, 0.1],
+                scale: [1, 1.5, 1],
               }}
               transition={{
-                duration: 10 + i * 2,
+                duration: 12 + i * 1.5,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: i * 0.8,
+                delay: i * 0.5,
               }}
-              className="absolute w-2 h-2 bg-primary/20 rounded-full blur-[2px]"
+              className="absolute w-2 h-2 bg-primary/30 rounded-full blur-[3px]"
               style={{
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+
+          {/* Floating Abstract Shapes */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`shape-${i}`}
+              animate={{
+                y: [0, Math.random() * 100 - 50, 0],
+                x: [0, Math.random() * 100 - 50, 0],
+                rotate: [0, 360],
+                opacity: [0.05, 0.15, 0.05],
+              }}
+              transition={{
+                duration: 20 + i * 5,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute border border-primary/20 rounded-full"
+              style={{
+                width: `${100 + i * 50}px`,
+                height: `${100 + i * 50}px`,
+                top: `${Math.random() * 80 + 10}%`,
+                left: `${Math.random() * 80 + 10}%`,
               }}
             />
           ))}
@@ -617,7 +664,123 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3 — OUR SPECIALIZED DIVISIONS */}
+      {/* SECTION 3 — PMU COURSE PROMOTION */}
+      <section className="py-12 md:py-16 bg-slate-50 text-slate-900 overflow-hidden relative">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-200/20 skew-x-12 translate-x-1/4 -z-0" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-slate-200/30 -skew-x-12 -translate-x-1/4 -z-0" />
+        
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col gap-6"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-200 text-slate-600 rounded-full text-sm font-bold uppercase tracking-wider self-start">
+                <Sparkles className="w-4 h-4" /> Professional Academy
+              </div>
+              
+              <h2 className="text-2xl md:text-4xl font-bold leading-tight">
+                Permanent Makeup <span className="text-slate-600">(PMU in Cosmetology Course)</span>
+              </h2>
+              
+              <p className="text-slate-600 text-lg leading-relaxed max-w-xl">
+                Elevate your expertise with our industry-leading PMU course. Master advanced techniques through intensive clinical training on live models.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
+                {[
+                  "Hands-on Clinical Training",
+                  "International Certification",
+                  "Live Model Practice",
+                  "Career Placement Support"
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center gap-3 text-slate-600">
+                    <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center shrink-0">
+                      <CheckCircle2 className="w-4 h-4 text-slate-600" />
+                    </div>
+                    <span className="font-medium text-sm md:text-base">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-white border border-slate-200 p-6 rounded-2xl relative overflow-hidden group shadow-sm">
+                <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Award className="w-12 h-12" />
+                </div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                  <span className="text-amber-600 font-bold uppercase text-xs tracking-widest">Hurry Up! Limited Seats Available</span>
+                </div>
+                <p className="text-slate-600 font-medium">
+                  Exclusive <span className="text-slate-900 font-bold">Early Bird Offer</span> for the upcoming batch. Secure your spot today!
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-4 pt-2">
+                <button 
+                  onClick={onEnrollOpen}
+                  className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/10 text-center min-w-[160px] cursor-pointer"
+                >
+                  Enroll Now
+                </button>
+                <Link 
+                  to="/academy" 
+                  className="px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-full font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2 text-center min-w-[200px]"
+                >
+                  View Course Details <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              {/* Main Image Container */}
+              <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white aspect-[4/5] md:aspect-square lg:aspect-[4/5]">
+                <img 
+                  src="https://image2url.com/r2/default/images/1774371317777-69796e5a-ce33-4eb0-a1e7-601d5727ff22.png" 
+                  alt="PMU Training Session" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent" />
+              </div>
+              
+              {/* Floating Success Card */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="absolute -bottom-8 -left-8 bg-white p-6 rounded-[2rem] shadow-2xl z-20 max-w-[220px] hidden md:block border border-slate-100"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center">
+                    <GraduationCap className="w-7 h-7 text-slate-900" />
+                  </div>
+                  <div>
+                    <div className="text-slate-900 font-bold text-lg leading-none">100%</div>
+                    <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Placement</div>
+                  </div>
+                </div>
+                <p className="text-slate-600 text-xs leading-relaxed">Join our alumni working in top aesthetic clinics globally.</p>
+              </motion.div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute -top-12 -right-12 w-48 h-48 bg-slate-200 rounded-full blur-[100px] -z-0" />
+              <div className="absolute top-1/2 -left-12 w-32 h-32 bg-slate-100 rounded-full blur-[80px] -z-0" />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4 — OUR SPECIALIZED DIVISIONS */}
       <section id="expertise" className="py-10 md:py-12 bg-soft-gray flex items-center">
         <div className="container-custom">
           <SectionHeader
@@ -648,7 +811,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4 — TREATMENTS & SERVICES */}
+      {/* SECTION 5 — TREATMENTS & SERVICES */}
       <section className="py-16 bg-white overflow-hidden">
         <div className="container-custom mb-12">
           <SectionHeader
@@ -735,7 +898,7 @@ export default function Home() {
 
       </section>
 
-      {/* SECTION 5 — OUR EXPERT DOCTORS */}
+      {/* SECTION 6 — OUR EXPERT DOCTORS */}
       <section className="py-10 bg-soft-gray overflow-hidden">
         <div className="container-custom">
           <SectionHeader
@@ -781,7 +944,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 6 — PATIENT TESTIMONIALS (Elegant Split Layout) */}
+      {/* SECTION 7 — PATIENT TESTIMONIALS (Elegant Split Layout) */}
       <section className="py-20 bg-[#f8fafc] overflow-hidden">
         <div className="container-custom">
           <SectionHeader
@@ -988,7 +1151,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 7 — RESEARCH & ACADEMIC CONTRIBUTIONS */}
+      {/* SECTION 8 — RESEARCH & ACADEMIC CONTRIBUTIONS */}
       <section className="py-24 bg-slate-50 relative overflow-hidden">
         <div className="container-custom relative z-10">
           <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
@@ -1097,7 +1260,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 8 — BOOK CONSULTATION */}
+      {/* SECTION 9 — BOOK CONSULTATION */}
       <section className="py-12 bg-white">
         <div className="container-custom">
           <motion.div

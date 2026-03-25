@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { motion, AnimatePresence } from 'motion/react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import EnrollModal from './components/EnrollModal';
 
 // Direct imports for core pages to eliminate navigation latency
 import Home from './pages/Home';
@@ -10,7 +11,6 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
-import Treatments from './pages/Treatments';
 import Publications from './pages/Publications';
 
 // Lazy load secondary pages
@@ -65,7 +65,6 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/treatments" element={<Treatments />} />
               <Route path="/treatments/dental" element={<DentalTreatments />} />
               <Route path="/treatments/cosmetology" element={<CosmetologyClinic />} />
               <Route path="/academy" element={<Academy />} />
@@ -80,6 +79,7 @@ export default function App() {
           </Suspense>
         </main>
         <Footer />
+        <EnrollModal />
       </div>
     </Router>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Linkedin, Mail, MapPin, Phone, ArrowRight } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Mail, MapPin, Phone, ArrowRight } from 'lucide-react';
 
 const footerLinks = [
   {
@@ -14,13 +14,13 @@ const footerLinks = [
     ],
   },
   {
-    title: 'Treatments',
+    title: 'Services',
     links: [
-      { label: 'Dental Implants', href: '/treatments#dental' },
-      { label: 'Root Canal', href: '/treatments#dental' },
-      { label: 'Skin Rejuvenation', href: '/treatments#cosmetology' },
-      { label: 'Hair Restoration', href: '/treatments#cosmetology' },
-      { label: 'Laser Treatments', href: '/treatments#cosmetology' },
+      { label: 'Dental Treatments', href: '/treatments/dental' },
+      { label: 'Cosmetology Clinic', href: '/treatments/cosmetology' },
+      { label: 'Professional Academy', href: '/academy' },
+      { label: 'Patient Stories', href: '/patient-stories' },
+      { label: 'Publications', href: '/publications' },
     ],
   },
 ];
@@ -43,7 +43,7 @@ export default function Footer() {
               Premium healthcare center dedicated to delivering comprehensive dental and aesthetic solutions with advanced technology and expert care.
             </p>
             <div className="flex gap-4">
-              {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
+              {[Facebook, Instagram, Youtube].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
@@ -89,7 +89,7 @@ export default function Footer() {
               </li>
               <li className="flex gap-4">
                 <Mail className="w-6 h-6 text-primary-light shrink-0" />
-                <span className="text-slate-400 text-sm">info@apolloclinic.com</span>
+                <span className="text-slate-400 text-sm">contact@apolloclinic.com</span>
               </li>
             </ul>
           </div>
