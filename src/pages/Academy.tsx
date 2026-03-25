@@ -206,7 +206,10 @@ export default function Academy() {
                   </div>
                   <div className="text-[10px] text-emerald-500 font-bold uppercase">50% Limited Time Offer</div>
                 </div>
-                <button className="px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-slate-900 transition-all shadow-lg shadow-primary/20">
+                <button 
+                  onClick={onEnrollOpen}
+                  className="px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-slate-900 transition-all shadow-lg shadow-primary/20"
+                >
                   Enroll Now
                 </button>
               </div>
@@ -256,7 +259,10 @@ export default function Academy() {
                   </div>
                   <div className="text-[10px] text-emerald-500 font-bold uppercase">50% Limited Time Offer</div>
                 </div>
-                <button className="px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-slate-900 transition-all shadow-lg shadow-primary/20">
+                <button 
+                  onClick={onEnrollOpen}
+                  className="px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-slate-900 transition-all shadow-lg shadow-primary/20"
+                >
                   Enroll Now
                 </button>
               </div>
@@ -600,7 +606,10 @@ export default function Academy() {
             </div>
 
             <div className="text-center relative z-10">
-              <button className="px-12 py-5 bg-primary text-white rounded-full font-bold text-lg shadow-xl hover:bg-white hover:text-primary transition-all transform hover:scale-105 active:scale-95">
+              <button 
+                onClick={onEnrollOpen}
+                className="px-12 py-5 bg-primary text-white rounded-full font-bold text-lg shadow-xl hover:bg-white hover:text-primary transition-all transform hover:scale-105 active:scale-95"
+              >
                 Apply Now or Enroll Now
               </button>
             </div>

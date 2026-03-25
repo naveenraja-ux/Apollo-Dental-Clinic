@@ -110,6 +110,62 @@ export default function Home() {
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
   const [playingVideoId, setPlayingVideoId] = React.useState<number | null>(null);
 
+  // Stable random values for background icons (Dental & Cosmetology)
+  const backgroundIcons = React.useMemo(() => {
+    const iconList = [
+      Smile, Sparkles, Heart, Activity, Droplets, Scissors, Syringe, 
+      FlaskConical, ShieldCheck, PenTool, Users, Stethoscope, Plus, Microscope
+    ];
+    
+    return [...Array(12)].map((_, i) => {
+      const Icon = iconList[i % iconList.length];
+      // Bias towards left (0-25%) or right (75-100%)
+      const isLeft = Math.random() > 0.5;
+      const left = isLeft ? Math.random() * 25 : 75 + Math.random() * 25;
+      const top = Math.random() * 100;
+
+      return {
+        id: i,
+        Icon,
+        size: 16 + Math.random() * 12, // 16px to 28px
+        top: `${top}%`,
+        left: `${left}%`,
+        duration: 20 + Math.random() * 20,
+        delay: Math.random() * -20,
+        moveX: [(Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40],
+        moveY: [(Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40],
+      };
+    });
+  }, []);
+
+  // Stable random values for floating dots (different sizes)
+  const backgroundDots = React.useMemo(() => {
+    return [...Array(20)].map((_, i) => {
+      const isLeft = Math.random() > 0.5;
+      const left = isLeft ? Math.random() * 30 : 70 + Math.random() * 30;
+      const top = Math.random() * 100;
+      
+      // Different size categories: tiny, small, medium, large
+      const sizeRoll = Math.random();
+      let size = 4;
+      if (sizeRoll < 0.4) size = 2; // tiny
+      else if (sizeRoll < 0.7) size = 6; // small
+      else if (sizeRoll < 0.9) size = 10; // medium
+      else size = 16; // large
+
+      return {
+        id: i,
+        size,
+        top: `${top}%`,
+        left: `${left}%`,
+        duration: 15 + Math.random() * 15,
+        delay: Math.random() * -15,
+        moveX: [(Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60],
+        moveY: [(Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60],
+      };
+    });
+  }, []);
+
   React.useEffect(() => {
     if (playingVideoId !== null) return; // Pause auto-scroll if a video is playing
 
@@ -176,323 +232,118 @@ export default function Home() {
         )}
       </AnimatePresence>
       {/* SECTION 1 — HERO SECTION (Premium Layered Clinical Aesthetic) */}
-      <section ref={heroRef} className="relative h-[105vh] w-full flex items-center justify-center bg-[#f8fafc] overflow-hidden">
-        {/* 1. Background Enhancement Layer */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          {/* Soft Radial Gradient (Center light -> Edges slightly darker) */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#ffffff_0%,#f8fafc_50%,#f1f5f9_100%)]" />
-          
-          {/* Subtle Purple-Blue Gradient Blobs (5-10% opacity, blurred) */}
+      <section ref={heroRef} className="relative h-[105vh] w-full flex items-center justify-center bg-[#fdfbff] overflow-hidden">
+        {/* 1. Optimized Aesthetic Background (Smooth Animated Gradient) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+          {/* Smooth Moving Gradient Layer (Hardware Accelerated) */}
           <motion.div 
-            animate={{ 
-              x: [0, 100, -50, 0],
-              y: [0, -80, 40, 0],
-              scale: [1, 1.4, 0.9, 1],
-            }}
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-15%] left-[-15%] w-[70vw] h-[70vw] bg-primary/10 blur-[140px] rounded-full" 
-          />
-          <motion.div 
-            animate={{ 
-              x: [0, -120, 60, 0],
-              y: [0, 100, -50, 0],
-              scale: [1.4, 0.9, 1.2, 1.4],
-            }}
-            transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-[-15%] right-[-15%] w-[75vw] h-[75vw] bg-indigo-400/10 blur-[160px] rounded-[45%]" 
-          />
-
-          {/* Floating Premium Shapes */}
-          <motion.div
             animate={{
-              y: [0, -60, 0],
-              rotate: [0, 360],
+              x: ['-25%', '25%', '-25%'],
+              y: ['-10%', '10%', '-10%'],
             }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute top-[20%] left-[10%] w-96 h-96 border border-primary/5 rounded-full"
-          />
-          <motion.div
-            animate={{
-              y: [0, 60, 0],
-              rotate: [360, 0],
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear"
             }}
-            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-[10%] right-[5%] w-[30rem] h-[30rem] border border-indigo-500/5 rounded-[30%]"
-          />
-
-          {/* Glass Shapes / Soft Blur Circles - More prominent for premium feel */}
-          <motion.div
-            animate={{
-              y: [0, -40, 0],
-              x: [0, 20, 0],
-              rotate: [0, 15, 0],
+            className="absolute -inset-[50%] opacity-30 bg-[radial-gradient(circle_at_center,rgba(var(--color-primary-rgb),0.08)_0%,transparent_70%),radial-gradient(circle_at_30%_30%,rgba(var(--color-primary-rgb),0.05)_0%,transparent_50%),radial-gradient(circle_at_70%_70%,rgba(var(--color-primary-rgb),0.03)_0%,transparent_50%)]"
+            style={{
+              willChange: 'transform',
             }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[15%] right-[10%] w-72 h-72 bg-white/40 backdrop-blur-3xl rounded-full border border-white/30 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] opacity-50"
-          />
-          <motion.div
-            animate={{
-              y: [0, 50, 0],
-              x: [0, -30, 0],
-              rotate: [0, -20, 0],
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-[20%] left-[5%] w-56 h-56 bg-white/30 backdrop-blur-2xl rounded-[4rem] border border-white/30 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] opacity-40"
-          />
-          <motion.div
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[40%] left-[15%] w-32 h-32 bg-primary/5 blur-3xl rounded-full"
           />
           
-          {/* Floating Particles (Blur Dots) */}
-          {[...Array(20)].map((_, i) => (
+          {/* Subtle Noise Texture for Premium Feel */}
+          <div className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay" 
+               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} 
+          />
+
+          {/* Soft Ambient Glows (Performance Optimized) */}
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full" />
+
+          {/* Floating Icons (Left & Right) */}
+          {backgroundIcons.map((item) => (
             <motion.div
-              key={i}
+              key={`bg-icon-${item.id}`}
+              style={{ 
+                top: item.top, 
+                left: item.left,
+                position: 'absolute',
+                willChange: 'transform',
+              }}
               animate={{
-                y: [0, -120, 0],
-                x: [0, 60, 0],
-                opacity: [0.1, 0.6, 0.1],
-                scale: [1, 1.5, 1],
+                x: item.moveX,
+                y: item.moveY,
+                opacity: [0, 0.4, 0], // Smooth fade-in/out
+                scale: [0.8, 1.1, 0.8],
               }}
               transition={{
-                duration: 12 + i * 1.5,
+                duration: item.duration,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: i * 0.5,
+                delay: item.delay,
               }}
-              className="absolute w-2 h-2 bg-primary/30 rounded-full blur-[3px]"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-
-          {/* Floating Abstract Shapes */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={`shape-${i}`}
-              animate={{
-                y: [0, Math.random() * 100 - 50, 0],
-                x: [0, Math.random() * 100 - 50, 0],
-                rotate: [0, 360],
-                opacity: [0.05, 0.15, 0.05],
-              }}
-              transition={{
-                duration: 20 + i * 5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute border border-primary/20 rounded-full"
-              style={{
-                width: `${100 + i * 50}px`,
-                height: `${100 + i * 50}px`,
-                top: `${Math.random() * 80 + 10}%`,
-                left: `${Math.random() * 80 + 10}%`,
-              }}
-            />
-          ))}
-
-          {/* Floating Themed Icons (Dental & Cosmetology) */}
-          {[
-            { Icon: Sparkles, top: '15%', left: '12%', delay: 0, size: 28 },
-            { Icon: Plus, top: '25%', left: '85%', delay: 2, size: 24 }, // Medical Cross
-            { Icon: Heart, top: '70%', left: '15%', delay: 4, size: 26 },
-            { Icon: Activity, top: '55%', left: '90%', delay: 1, size: 28 },
-            { Icon: Smile, top: '18%', left: '75%', delay: 5, size: 26 },
-            { Icon: Droplets, top: '80%', left: '40%', delay: 2.5, size: 24 },
-            { Icon: Zap, top: '40%', left: '10%', delay: 1.5, size: 24 },
-            { Icon: ShieldCheck, top: '30%', left: '20%', delay: 3.5, size: 22 },
-            { Icon: Stethoscope, top: '10%', left: '45%', delay: 6, size: 22 },
-            { Icon: Microscope, top: '65%', left: '80%', delay: 7, size: 24 },
-            { Icon: Lightbulb, top: '85%', left: '65%', delay: 8, size: 20 },
-            { Icon: PenTool, top: '5%', left: '80%', delay: 9, size: 22 },
-            { Icon: BookOpen, top: '90%', left: '10%', delay: 10, size: 20 },
-            { Icon: Scissors, top: '45%', left: '85%', delay: 11, size: 22 },
-            { Icon: Syringe, top: '75%', left: '5%', delay: 12, size: 24 },
-            { Icon: FlaskConical, top: '12%', left: '25%', delay: 13, size: 20 },
-          ].map((item, i) => (
-            <motion.div
-              key={`icon-${i}`}
-              initial={{ opacity: 0 }}
-              animate={{ 
-                y: [0, -60, 0],
-                x: [0, 30, 0],
-                opacity: [0, 0.4, 0],
-                rotate: [0, 25, -25, 0]
-              }}
-              transition={{ 
-                duration: 15 + i, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: item.delay 
-              }}
-              className="absolute text-primary/40 pointer-events-none"
-              style={{ top: item.top, left: item.left }}
+              className="text-primary/40"
             >
               <item.Icon size={item.size} strokeWidth={1.5} />
             </motion.div>
           ))}
 
-          {/* Graphic Designs - Abstract Circular Patterns */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-              className="absolute top-[-10%] right-[-10%] w-[40rem] h-[40rem] opacity-[0.03] text-primary"
-            >
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="99" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4"/>
-                <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="0.5" strokeDasharray="8 8"/>
-                <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2"/>
-              </svg>
-            </motion.div>
-            <motion.div 
-              animate={{ rotate: -360 }}
-              transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-              className="absolute bottom-[-15%] left-[-5%] w-[35rem] h-[35rem] opacity-[0.03] text-primary"
-            >
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="99" stroke="currentColor" strokeWidth="0.5" strokeDasharray="10 10"/>
-                <circle cx="100" cy="100" r="70" stroke="currentColor" strokeWidth="0.5" strokeDasharray="5 5"/>
-              </svg>
-            </motion.div>
-          </div>
+          {/* Floating Dots (Left & Right) */}
+          {backgroundDots.map((dot) => (
+            <motion.div
+              key={`bg-dot-${dot.id}`}
+              style={{
+                top: dot.top,
+                left: dot.left,
+                width: dot.size,
+                height: dot.size,
+                position: 'absolute',
+                willChange: 'transform',
+              }}
+              animate={{
+                x: dot.moveX,
+                y: dot.moveY,
+                opacity: [0, 0.3, 0], // Smooth fade-in/out
+                scale: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: dot.duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: dot.delay,
+              }}
+              className="bg-primary/20 rounded-full blur-[1px]"
+            />
+          ))}
 
-          {/* Tooth Icon (Custom SVG) - More detailed */}
+          {/* Female Face Line Art (Premium Aesthetic) */}
           <motion.div
-            animate={{ 
-              y: [0, -50, 0],
-              opacity: [0, 0.3, 0],
-              rotate: [0, 15, -15, 0]
+            style={{ 
+              position: 'absolute',
+              top: '20%',
+              right: '8%',
+              willChange: 'transform',
             }}
-            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-[35%] right-[15%] text-primary/40 pointer-events-none"
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 5, 0],
+              opacity: [0.05, 0.15, 0.05],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="text-primary/30 hidden lg:block"
           >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M7 3C4.23858 3 2 5.23858 2 8C2 11.5 5 13.5 5 17C5 19.2091 6.79086 21 9 21C10.1046 21 11 20.1046 11 19V17H13V19C13 20.1046 13.8954 21 15 21C17.2091 21 19 19.2091 19 17C19 13.5 22 11.5 22 8C22 5.23858 19.7614 3 17 3C14.2386 3 12 5.23858 12 8C12 5.23858 9.76142 3 7 3Z" />
-              <path d="M12 8V12" opacity="0.5" />
+            <svg width="240" height="240" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.5">
+              <path d="M35,15 C45,12 55,15 60,25 C65,35 62,50 55,60 C48,70 35,75 25,72 C15,69 10,55 12,40 C14,25 25,18 35,15 Z" />
+              <path d="M60,25 C70,20 85,25 90,40 C95,55 85,75 65,85 C45,95 25,90 15,75" opacity="0.8" />
+              <path d="M42,42 Q47,38 52,42" opacity="0.7" />
+              <path d="M38,58 Q43,61 48,58" opacity="0.6" />
             </svg>
           </motion.div>
-
-          {/* Teeth Outlines (Subtle Background SVGs) - More of them */}
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden">
-            <svg className="absolute top-[10%] -left-20 w-[30rem] h-[30rem] text-primary rotate-12" viewBox="0 0 100 100">
-              <path d="M30,20 C10,20 5,40 5,60 C5,85 20,95 40,95 C55,95 60,85 60,75 L60,65 L70,65 L70,75 C70,85 75,95 90,95 C110,95 125,85 125,60 C125,40 120,20 100,20 C80,20 65,40 65,60 C65,40 50,20 30,20 Z" fill="none" stroke="currentColor" strokeWidth="0.3" />
-            </svg>
-            <svg className="absolute bottom-[5%] -right-20 w-[25rem] h-[25rem] text-primary -rotate-12" viewBox="0 0 100 100">
-              <path d="M30,20 C10,20 5,40 5,60 C5,85 20,95 40,95 C55,95 60,85 60,75 L60,65 L70,65 L70,75 C70,85 75,95 90,95 C110,95 125,85 125,60 C125,40 120,20 100,20 C80,20 65,40 65,60 C65,40 50,20 30,20 Z" fill="none" stroke="currentColor" strokeWidth="0.3" />
-            </svg>
-            <svg className="absolute top-[60%] left-[40%] w-64 h-64 text-primary opacity-20" viewBox="0 0 100 100">
-              <path d="M30,20 C10,20 5,40 5,60 C5,85 20,95 40,95 C55,95 60,85 60,75 L60,65 L70,65 L70,75 C70,85 75,95 90,95 C110,95 125,85 125,60 C125,40 120,20 100,20 C80,20 65,40 65,60 C65,40 50,20 30,20 Z" fill="none" stroke="currentColor" strokeWidth="0.2" />
-            </svg>
-            <svg className="absolute top-[20%] left-[60%] w-48 h-48 text-primary opacity-10 rotate-45" viewBox="0 0 100 100">
-              <path d="M30,20 C10,20 5,40 5,60 C5,85 20,95 40,95 C55,95 60,85 60,75 L60,65 L70,65 L70,75 C70,85 75,95 90,95 C110,95 125,85 125,60 C125,40 120,20 100,20 C80,20 65,40 65,60 C65,40 50,20 30,20 Z" fill="none" stroke="currentColor" strokeWidth="0.1" />
-            </svg>
-          </div>
-
-          {/* Floating Dental & Cosmetology Elements (Premium Design) */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {[
-              { top: '12%', left: '8%', delay: 0, type: 'svg', size: 32 },
-              { top: '22%', left: '88%', delay: 2, type: 'img', size: 40 },
-              { top: '78%', left: '12%', delay: 4, type: 'img', size: 36 },
-              { top: '62%', left: '82%', delay: 6, type: 'svg', size: 28 },
-              { top: '38%', left: '4%', delay: 8, type: 'img', size: 34 },
-              { top: '88%', left: '72%', delay: 10, type: 'svg', size: 38 },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                animate={{ 
-                  opacity: [0, 0.1, 0.1, 0],
-                  y: [-40, 40, -40],
-                  x: [-20, 20, -20],
-                  rotate: [0, 20, -20, 0]
-                }}
-                transition={{ 
-                  duration: 15, 
-                  delay: item.delay, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
-                }}
-                className="absolute"
-                style={{ top: item.top, left: item.left }}
-              >
-                {item.type === 'svg' ? (
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width={item.size} 
-                    height={item.size} 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="1" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="text-primary/20"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M12 5.5c-1.074 -.586 -2.583 -1.5 -4 -1.5c-2.1 0 -4 1.247 -4 5c0 4.899 1.056 8.41 2.671 10.537c.573 .756 1.97 .521 2.567 -.236c.398 -.505 .819 -1.439 1.262 -2.801c.292 -.771 .892 -1.504 1.5 -1.5c.602 0 1.21 .737 1.5 1.5c.443 1.362 .864 2.295 1.262 2.8c.597 .759 2 .993 2.567 .237c1.615 -2.127 2.671 -5.637 2.671 -10.537c0 -3.74 -1.908 -5 -4 -5c-1.423 0 -2.92 .911 -4 1.5" />
-                    <path d="M12 5.5l3 1.5" />
-                  </svg>
-                ) : (
-                  <img 
-                    src="https://image2url.com/r2/default/images/1773942547076-47634f19-9060-4927-a982-59845341490a.png" 
-                    alt="" 
-                    style={{ width: item.size, height: item.size }}
-                    className="opacity-[0.08] grayscale brightness-150 contrast-50"
-                  />
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Premium Grid Effect */}
-          <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-               style={{ backgroundImage: 'radial-gradient(circle, #4f46e5 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-          
-          <motion.div 
-            animate={{ 
-              backgroundPosition: ['0px 0px', '60px 60px'] 
-            }}
-            transition={{ 
-              duration: 30, 
-              repeat: Infinity, 
-              ease: "linear" 
-            }}
-            className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-            style={{ backgroundImage: 'linear-gradient(to right, #4f46e5 1px, transparent 1px), linear-gradient(to bottom, #4f46e5 1px, transparent 1px)', backgroundSize: '120px 120px' }} 
-          />
-
-          {/* Abstract Medical Wave Lines (Animated) */}
-          <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-            <motion.svg 
-              animate={{ x: [-20, 20, -20] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-[40%] left-0 w-full h-32 text-primary" viewBox="0 0 1000 100" preserveAspectRatio="none"
-            >
-              <path d="M0,50 Q250,0 500,50 T1000,50" fill="none" stroke="currentColor" strokeWidth="0.5" />
-            </motion.svg>
-            <motion.svg 
-              animate={{ x: [20, -20, 20] }}
-              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-[60%] left-0 w-full h-32 text-primary" viewBox="0 0 1000 100" preserveAspectRatio="none"
-            >
-              <path d="M0,50 Q250,100 500,50 T1000,50" fill="none" stroke="currentColor" strokeWidth="0.5" />
-            </motion.svg>
-          </div>
-
-          {/* Light Noise Texture Overlay (2-3%) */}
-          <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" 
-               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
-
-          {/* Soft Vignette Effect */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_50%,rgba(15,23,42,0.08)_100%)]" />
         </div>
 
         <div className="container-custom relative z-10 w-full flex flex-col items-center text-center pb-20">
@@ -518,19 +369,52 @@ export default function Home() {
             
             {/* Main Heading: 2 Lines (3 words then 2 words) */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.2,
+                    delayChildren: 0.1
+                  }
+                }
+              }}
               className="font-display tracking-tight leading-[1.15] mb-6 text-slate-900 text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] max-w-4xl"
             >
-              Advanced Clinical Care <br />
-              <span className="relative inline-block">
+              <motion.span
+                variants={{
+                  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    filter: "blur(0px)",
+                    transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
+                  }
+                }}
+                className="block"
+              >
+                Advanced Clinic Care
+              </motion.span>
+              <motion.span
+                variants={{
+                  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    filter: "blur(0px)",
+                    transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
+                  }
+                }}
+                className="relative inline-block"
+              >
                 <span className="bg-gradient-to-r from-black via-primary via-20% to-primary bg-clip-text text-transparent drop-shadow-sm">
                   Aesthetic Precision
                 </span>
                 {/* Soft Glow to highlight text */}
                 <span className="absolute inset-0 bg-primary/5 blur-xl -z-10 opacity-30" />
-              </span>
+              </motion.span>
             </motion.h1>
 
             {/* Subtext: Exactly 2 Lines */}
@@ -621,13 +505,14 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-[3/2] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
+              <div className="group aspect-[3/2] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white relative">
                 <img
                   src="https://image2url.com/r2/default/images/1773671992276-f727b3c1-4a1d-48c4-a90c-efe17d9664aa.jpeg"
                   alt="Apollo Clinic"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-primary p-6 rounded-[1.5rem] shadow-premium text-white max-w-[200px] hidden md:block">
                 <h4 className="text-2xl font-bold mb-1">15+</h4>
@@ -665,32 +550,32 @@ export default function Home() {
       </section>
 
       {/* SECTION 3 — PMU COURSE PROMOTION */}
-      <section className="py-12 md:py-16 bg-slate-50 text-slate-900 overflow-hidden relative">
+      <section className="py-8 md:py-10 bg-slate-50 text-slate-900 overflow-hidden relative min-h-[60vh] flex items-center">
         {/* Background Decorative Elements */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-200/20 skew-x-12 translate-x-1/4 -z-0" />
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-slate-200/30 -skew-x-12 -translate-x-1/4 -z-0" />
         
         <div className="container-custom relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="flex flex-col gap-6"
+              className="flex flex-col gap-4"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-200 text-slate-600 rounded-full text-sm font-bold uppercase tracking-wider self-start">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-wider self-start">
                 <Sparkles className="w-4 h-4" /> Professional Academy
               </div>
               
-              <h2 className="text-2xl md:text-4xl font-bold leading-tight">
-                Permanent Makeup <span className="text-slate-600">(PMU in Cosmetology Course)</span>
+              <h2 className="text-2xl md:text-3xl font-bold leading-tight">
+                Permanent Makeup <span className="text-primary">(PMU in Cosmetology Course)</span>
               </h2>
               
-              <p className="text-slate-600 text-lg leading-relaxed max-w-xl">
+              <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-xl line-clamp-2">
                 Elevate your expertise with our industry-leading PMU course. Master advanced techniques through intensive clinical training on live models.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-1">
                 {[
                   "Hands-on Clinical Training",
                   "International Certification",
@@ -698,39 +583,39 @@ export default function Home() {
                   "Career Placement Support"
                 ].map((feature, i) => (
                   <div key={i} className="flex items-center gap-3 text-slate-600">
-                    <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center shrink-0">
-                      <CheckCircle2 className="w-4 h-4 text-slate-600" />
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="font-medium text-sm md:text-base">{feature}</span>
+                    <span className="font-medium text-xs md:text-sm">{feature}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="bg-white border border-slate-200 p-6 rounded-2xl relative overflow-hidden group shadow-sm">
+              <div className="bg-white border border-slate-200 p-5 rounded-2xl relative overflow-hidden group shadow-sm">
                 <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Award className="w-12 h-12" />
+                  <Award className="w-10 h-10" />
                 </div>
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-3 mb-1">
                   <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                  <span className="text-amber-600 font-bold uppercase text-xs tracking-widest">Hurry Up! Limited Seats Available</span>
+                  <span className="text-amber-600 font-bold uppercase text-[10px] tracking-widest">Hurry Up! Limited Seats Available</span>
                 </div>
-                <p className="text-slate-600 font-medium">
+                <p className="text-slate-600 text-xs md:text-sm font-medium">
                   Exclusive <span className="text-slate-900 font-bold">Early Bird Offer</span> for the upcoming batch. Secure your spot today!
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap gap-4 pt-1">
                 <button 
                   onClick={onEnrollOpen}
-                  className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/10 text-center min-w-[160px] cursor-pointer"
+                  className="px-8 py-3.5 bg-primary text-white rounded-full font-bold hover:bg-primary-dark transition-all shadow-lg shadow-primary/10 text-center min-w-[160px] cursor-pointer text-sm"
                 >
                   Enroll Now
                 </button>
                 <Link 
                   to="/academy" 
-                  className="px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-full font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2 text-center min-w-[200px]"
+                  className="px-8 py-3.5 bg-white text-slate-900 border border-slate-200 rounded-full font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2 text-center min-w-[200px] text-sm"
                 >
-                  View Course Details <ArrowRight className="w-5 h-5" />
+                  View Course Details <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </motion.div>
@@ -742,11 +627,11 @@ export default function Home() {
               className="relative"
             >
               {/* Main Image Container */}
-              <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white aspect-[4/5] md:aspect-square lg:aspect-[4/5]">
+              <div className="group relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-[8px] border-white aspect-[16/9] md:aspect-[4/3] lg:aspect-[3/2]">
                 <img 
                   src="https://image2url.com/r2/default/images/1774371317777-69796e5a-ce33-4eb0-a1e7-601d5727ff22.png" 
                   alt="PMU Training Session" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent" />
@@ -758,23 +643,23 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="absolute -bottom-8 -left-8 bg-white p-6 rounded-[2rem] shadow-2xl z-20 max-w-[220px] hidden md:block border border-slate-100"
+                className="absolute -bottom-6 -left-6 bg-white p-5 rounded-[1.5rem] shadow-2xl z-20 max-w-[200px] hidden md:block border border-slate-100"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center">
-                    <GraduationCap className="w-7 h-7 text-slate-900" />
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <GraduationCap className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <div className="text-slate-900 font-bold text-lg leading-none">100%</div>
-                    <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Placement</div>
+                    <div className="text-slate-900 font-bold text-base leading-none">100%</div>
+                    <div className="text-slate-500 text-[9px] font-bold uppercase tracking-wider">Placement</div>
                   </div>
                 </div>
-                <p className="text-slate-600 text-xs leading-relaxed">Join our alumni working in top aesthetic clinics globally.</p>
+                <p className="text-slate-600 text-[10px] leading-relaxed">Join our alumni working in top aesthetic clinics globally.</p>
               </motion.div>
               
               {/* Decorative Elements */}
-              <div className="absolute -top-12 -right-12 w-48 h-48 bg-slate-200 rounded-full blur-[100px] -z-0" />
-              <div className="absolute top-1/2 -left-12 w-32 h-32 bg-slate-100 rounded-full blur-[80px] -z-0" />
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/5 rounded-full blur-[60px] -z-0" />
+              <div className="absolute top-1/2 -left-8 w-24 h-24 bg-primary/5 rounded-full blur-[50px] -z-0" />
             </motion.div>
           </div>
         </div>
@@ -847,8 +732,8 @@ export default function Home() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      <div className="absolute bottom-6 left-6 right-6">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-20" />
+                      <div className="absolute bottom-6 left-6 right-6 z-30">
                         <h4 className="text-white text-lg font-bold leading-tight drop-shadow-md">{item.name}</h4>
                       </div>
                     </motion.div>
@@ -884,8 +769,8 @@ export default function Home() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      <div className="absolute bottom-6 left-6 right-6">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-20" />
+                      <div className="absolute bottom-6 left-6 right-6 z-30">
                         <h4 className="text-white text-lg font-bold leading-tight drop-shadow-md">{item.name}</h4>
                       </div>
                     </motion.div>
@@ -931,7 +816,7 @@ export default function Home() {
                     className="w-full h-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
                 </div>
                 <div className="p-3 text-center">
                   <h4 className="text-sm font-bold text-text-dark mb-0.5 truncate">{doc.name}</h4>

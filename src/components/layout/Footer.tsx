@@ -43,15 +43,30 @@ export default function Footer() {
               Premium healthcare center dedicated to delivering comprehensive dental and aesthetic solutions with advanced technology and expert care.
             </p>
             <div className="flex gap-4">
-              {[Facebook, Instagram, Youtube].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/PMUandCosmetology/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/apolloacademy_cosmetology?igsh=OGg3MGpzazF6OGVr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/@ApolloAcademyCosmo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
+              >
+                <Youtube className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
@@ -89,7 +104,7 @@ export default function Footer() {
               </li>
               <li className="flex gap-4">
                 <Mail className="w-6 h-6 text-primary-light shrink-0" />
-                <span className="text-slate-400 text-sm">contact@apolloclinic.com</span>
+                <span className="text-slate-400 text-sm">drmanimekalaiperio@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -100,8 +115,8 @@ export default function Footer() {
             © {new Date().getFullYear()} Apollo Dental & Cosmetology Clinics. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-slate-500 text-xs hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-slate-500 text-xs hover:text-white transition-colors">Terms of Service</a>
+            <Link to="/contact" className="text-slate-500 text-xs hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/contact" className="text-slate-500 text-xs hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

@@ -25,16 +25,16 @@ export default function ServiceCard({ title, description, href, image }: Service
       viewport={{ once: true }}
       className="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-soft hover:shadow-premium transition-all duration-500 border border-slate-100/50 flex flex-col h-full"
     >
-      {/* Image Container with subtle gradient */}
+      {/* Image Container */}
       <div className="relative h-56 overflow-hidden bg-white group-hover:bg-slate-50 transition-colors duration-500 flex items-center justify-center p-8">
         <motion.img
-          whileHover={{ scale: 1.15, rotate: 2 }}
+          whileHover={{ scale: 1.1, rotate: 1 }}
           src={image}
           alt={typeof title === 'string' ? title : 'Service'}
-          className="w-full h-full object-contain transition-transform duration-700"
+          className="w-full h-full object-contain transition-transform duration-700 relative z-0"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
       </div>
       
       {/* Content Area */}
