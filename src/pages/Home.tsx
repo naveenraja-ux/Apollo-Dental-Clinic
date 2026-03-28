@@ -112,14 +112,24 @@ export default function Home() {
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
   const [playingVideoId, setPlayingVideoId] = React.useState<number | null>(null);
 
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Stable path data for the medical aesthetic overlay
   const pathData = React.useMemo(() => {
-    return [...Array(5)].map((_, i) => ({
+    const count = isMobile ? 2 : 5;
+    return [...Array(count)].map((_, i) => ({
       id: i,
       d: `M -100 ${200 + i * 100} Q 400 ${150 + i * 50} 900 ${200 + i * 100} T 2000 ${200 + i * 100}`,
       duration: 15 + i * 3,
     }));
-  }, []);
+  }, [isMobile]);
 
   React.useEffect(() => {
     if (playingVideoId !== null) return; // Pause auto-scroll if a video is playing

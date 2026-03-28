@@ -67,8 +67,18 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({
 };
 
 export const FloatingDentalIcons: React.FC = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const icons = React.useMemo(() => {
-    return [...Array(15)].map((_, i) => ({
+    const count = isMobile ? 6 : 15;
+    return [...Array(count)].map((_, i) => ({
       id: i,
       path: DENTAL_PATHS[i % DENTAL_PATHS.length],
       delay: Math.random() * 5,
@@ -78,7 +88,7 @@ export const FloatingDentalIcons: React.FC = () => {
       scale: 0.5 + Math.random() * 0.5,
       opacity: 0.1 + Math.random() * 0.2,
     }));
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">

@@ -40,8 +40,17 @@ export const BackgroundGradientAnimation = ({
   const animationRef = useRef<number>()
   const positionRef = useRef({ curX: 0, curY: 0, tgX: 0, tgY: 0 })
 
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const animate = useCallback(() => {
-    if (!interactiveRef.current) return
+    if (!interactiveRef.current || isMobile) return;
 
     const { curX, curY, tgX, tgY } = positionRef.current
     positionRef.current.curX = curX + (tgX - curX) / 40
@@ -103,7 +112,10 @@ export const BackgroundGradientAnimation = ({
       </svg>
 
       {/* Gradient blobs container */}
-      <div className="absolute inset-0 blur-[100px] [filter:url(#goo-filter)_blur(100px)] opacity-60">
+      <div className={cn(
+        "absolute inset-0 blur-[100px] opacity-60",
+        !isMobile && "[filter:url(#goo-filter)_blur(100px)]"
+      )}>
         {/* First blob */}
         <motion.div
           className="absolute rounded-full"
