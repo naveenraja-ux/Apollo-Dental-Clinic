@@ -69,3 +69,40 @@
 .hover-lift {
   @apply transition-transform duration-300 hover:-translate-y-2;
 }
+
+@keyframes shiny {
+  0% { background-position: -150% center; }
+  100% { background-position: 150% center; }
+}
+
+.shiny-text {
+  background: linear-gradient(
+    120deg,
+    #0f172a 30%,
+    #800080 38%,
+    #a855f7 40%,
+    #800080 42%,
+    #0f172a 50%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shiny 4s infinite linear;
+}
+
+.shiny-text-primary {
+  background: linear-gradient(
+    120deg,
+    #800080 30%,
+    #d8b4fe 38%,
+    #ffffff 40%,
+    #d8b4fe 42%,
+    #800080 50%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shiny 4s infinite linear;
+}

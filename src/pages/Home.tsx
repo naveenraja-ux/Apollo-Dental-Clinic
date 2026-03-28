@@ -40,6 +40,8 @@ import { Link } from 'react-router-dom';
 import { useEnrollModal } from '../hooks/useEnrollModal';
 import SectionHeader from '../components/ui/SectionHeader';
 import ServiceCard from '../components/ui/ServiceCard';
+import { BackgroundGradientAnimation } from '../components/BackgroundGradientAnimation';
+import { FloatingDentalIcons } from '../components/FloatingDentalIcons';
 
 const testimonials = [
   {
@@ -110,60 +112,13 @@ export default function Home() {
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
   const [playingVideoId, setPlayingVideoId] = React.useState<number | null>(null);
 
-  // Stable random values for background icons (Dental & Cosmetology)
-  const backgroundIcons = React.useMemo(() => {
-    const iconList = [
-      Smile, Sparkles, Heart, Activity, Droplets, Scissors, Syringe, 
-      FlaskConical, ShieldCheck, PenTool, Users, Stethoscope, Plus, Microscope
-    ];
-    
-    return [...Array(12)].map((_, i) => {
-      const Icon = iconList[i % iconList.length];
-      // Bias towards left (0-25%) or right (75-100%)
-      const isLeft = Math.random() > 0.5;
-      const left = isLeft ? Math.random() * 25 : 75 + Math.random() * 25;
-      const top = Math.random() * 100;
-
-      return {
-        id: i,
-        Icon,
-        size: 16 + Math.random() * 12, // 16px to 28px
-        top: `${top}%`,
-        left: `${left}%`,
-        duration: 20 + Math.random() * 20,
-        delay: Math.random() * -20,
-        moveX: [(Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40],
-        moveY: [(Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40],
-      };
-    });
-  }, []);
-
-  // Stable random values for floating dots (different sizes)
-  const backgroundDots = React.useMemo(() => {
-    return [...Array(20)].map((_, i) => {
-      const isLeft = Math.random() > 0.5;
-      const left = isLeft ? Math.random() * 30 : 70 + Math.random() * 30;
-      const top = Math.random() * 100;
-      
-      // Different size categories: tiny, small, medium, large
-      const sizeRoll = Math.random();
-      let size = 4;
-      if (sizeRoll < 0.4) size = 2; // tiny
-      else if (sizeRoll < 0.7) size = 6; // small
-      else if (sizeRoll < 0.9) size = 10; // medium
-      else size = 16; // large
-
-      return {
-        id: i,
-        size,
-        top: `${top}%`,
-        left: `${left}%`,
-        duration: 15 + Math.random() * 15,
-        delay: Math.random() * -15,
-        moveX: [(Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60],
-        moveY: [(Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60],
-      };
-    });
+  // Stable path data for the medical aesthetic overlay
+  const pathData = React.useMemo(() => {
+    return [...Array(5)].map((_, i) => ({
+      id: i,
+      d: `M -100 ${200 + i * 100} Q 400 ${150 + i * 50} 900 ${200 + i * 100} T 2000 ${200 + i * 100}`,
+      duration: 15 + i * 3,
+    }));
   }, []);
 
   React.useEffect(() => {
@@ -231,128 +186,87 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* SECTION 1 — HERO SECTION (Premium Layered Clinical Aesthetic) */}
-      <section ref={heroRef} className="relative h-[105vh] w-full flex items-center justify-center bg-[#fdfbff] overflow-hidden">
-        {/* 1. Optimized Aesthetic Background (Smooth Animated Gradient) */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-          {/* Smooth Moving Gradient Layer (Hardware Accelerated) */}
-          <motion.div 
-            animate={{
-              x: ['-25%', '25%', '-25%'],
-              y: ['-10%', '10%', '-10%'],
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute -inset-[50%] opacity-30 bg-[radial-gradient(circle_at_center,rgba(var(--color-primary-rgb),0.08)_0%,transparent_70%),radial-gradient(circle_at_30%_30%,rgba(var(--color-primary-rgb),0.05)_0%,transparent_50%),radial-gradient(circle_at_70%_70%,rgba(var(--color-primary-rgb),0.03)_0%,transparent_50%)]"
-            style={{
-              willChange: 'transform',
-            }}
-          />
-          
-          {/* Subtle Noise Texture for Premium Feel */}
-          <div className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay" 
-               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} 
-          />
+      {/* SECTION 1 — HERO SECTION (Clean Aesthetic) */}
+      <section ref={heroRef} className="relative h-[105vh] w-full flex items-center justify-center bg-white overflow-hidden">
+        {/* Base Gradient Layer */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-purple-50 to-purple-100" />
+        
+        <BackgroundGradientAnimation 
+          gradientBackgroundStart="transparent"
+          gradientBackgroundEnd="transparent"
+          firstColor="168, 85, 247"
+          secondColor="192, 132, 252"
+          thirdColor="233, 213, 255"
+          fourthColor="250, 245, 255"
+          fifthColor="216, 180, 254"
+          pointerColor="168, 85, 247"
+          className="opacity-20"
+        />
 
-          {/* Soft Ambient Glows (Performance Optimized) */}
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full" />
+        <FloatingDentalIcons />
 
-          {/* Floating Icons (Left & Right) */}
-          {backgroundIcons.map((item) => (
-            <motion.div
-              key={`bg-icon-${item.id}`}
-              style={{ 
-                top: item.top, 
-                left: item.left,
-                position: 'absolute',
-                willChange: 'transform',
-              }}
-              animate={{
-                x: item.moveX,
-                y: item.moveY,
-                opacity: [0, 0.4, 0], // Smooth fade-in/out
-                scale: [0.8, 1.1, 0.8],
-              }}
-              transition={{
-                duration: item.duration,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: item.delay,
-              }}
-              className="text-primary/40"
-            >
-              <item.Icon size={item.size} strokeWidth={1.5} />
-            </motion.div>
-          ))}
+        {/* Medical Aesthetic SVG Overlay */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-[0.08]" style={{ filter: "blur(0.6px)" }}>
+          <svg width="100%" height="100%" preserveAspectRatio="none">
+            <defs>
+              {pathData.map((_, i) => (
+                <linearGradient
+                  key={`gradient-${i}`}
+                  id={`gradient-${i}`}
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  {/* Soft fade in */}
+                  <stop offset="0%" stopColor="#800080" stopOpacity="0" />
 
-          {/* Floating Dots (Left & Right) */}
-          {backgroundDots.map((dot) => (
-            <motion.div
-              key={`bg-dot-${dot.id}`}
-              style={{
-                top: dot.top,
-                left: dot.left,
-                width: dot.size,
-                height: dot.size,
-                position: 'absolute',
-                willChange: 'transform',
-              }}
-              animate={{
-                x: dot.moveX,
-                y: dot.moveY,
-                opacity: [0, 0.3, 0], // Smooth fade-in/out
-                scale: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: dot.duration,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: dot.delay,
-              }}
-              className="bg-primary/20 rounded-full blur-[1px]"
-            />
-          ))}
+                  {/* Main purple highlight */}
+                  <stop offset="25%" stopColor="#800080" stopOpacity="0.7" />
 
-          {/* Female Face Line Art (Premium Aesthetic) */}
-          <motion.div
-            style={{ 
-              position: 'absolute',
-              top: '20%',
-              right: '8%',
-              willChange: 'transform',
-            }}
-            animate={{
-              y: [0, -20, 0],
-              rotate: [0, 5, 0],
-              opacity: [0.05, 0.15, 0.05],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="text-primary/30 hidden lg:block"
-          >
-            <svg width="240" height="240" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.5">
-              <path d="M35,15 C45,12 55,15 60,25 C65,35 62,50 55,60 C48,70 35,75 25,72 C15,69 10,55 12,40 C14,25 25,18 35,15 Z" />
-              <path d="M60,25 C70,20 85,25 90,40 C95,55 85,75 65,85 C45,95 25,90 15,75" opacity="0.8" />
-              <path d="M42,42 Q47,38 52,42" opacity="0.7" />
-              <path d="M38,58 Q43,61 48,58" opacity="0.6" />
-            </svg>
-          </motion.div>
+                  {/* Rich mid tone */}
+                  <stop offset="50%" stopColor="#a855f7" stopOpacity="0.6" />
+
+                  {/* Soft lavender tail */}
+                  <stop offset="75%" stopColor="#d8b4fe" stopOpacity="0.5" />
+
+                  {/* Fade out */}
+                  <stop offset="100%" stopColor="#d8b4fe" stopOpacity="0" />
+                </linearGradient>
+              ))}
+            </defs>
+            {pathData.map((path, i) => (
+              <motion.path
+                key={i}
+                d={path.d}
+                stroke={`url(#gradient-${i})`}
+                fill="none"
+                strokeWidth="1.5"
+                animate={{
+                  d: [
+                    path.d,
+                    path.d.replace(/(\d+)/g, (m, p1) => String(Number(p1) + (i % 2 === 0 ? 30 : -30))),
+                    path.d
+                  ]
+                }}
+                transition={{
+                  duration: path.duration,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+            
+            {/* Subtle Grid Lines */}
+            <pattern id="medical-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#800080" strokeWidth="0.5" opacity="0.1" />
+              <circle cx="0" cy="0" r="1" fill="#0f172a" opacity="0.2" />
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#medical-grid)" />
+          </svg>
         </div>
 
         <div className="container-custom relative z-10 w-full flex flex-col items-center text-center pb-20">
-          {/* 3. Content Anchoring Layer */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] max-w-5xl max-h-[600px] z-[-1]">
-            {/* Soft Glow behind text block */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.04),transparent_70%)] blur-[60px]" />
-          </div>
-
           <motion.div 
             style={{ opacity }}
             className="relative flex flex-col items-center w-full"
@@ -381,7 +295,7 @@ export default function Home() {
                   }
                 }
               }}
-              className="font-display tracking-tight leading-[1.15] mb-6 text-slate-900 text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] max-w-4xl"
+              className="font-display tracking-tight leading-[1.05] mb-8 max-w-4xl mx-auto"
             >
               <motion.span
                 variants={{
@@ -393,9 +307,9 @@ export default function Home() {
                     transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
                   }
                 }}
-                className="block"
+                className="block shiny-text text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter mb-2"
               >
-                Advanced Clinic Care
+                Advanced Dental Care
               </motion.span>
               <motion.span
                 variants={{
@@ -407,10 +321,10 @@ export default function Home() {
                     transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
                   }
                 }}
-                className="relative inline-block"
+                className="relative block text-2xl md:text-4xl lg:text-5xl font-bold italic"
               >
-                <span className="bg-gradient-to-r from-black via-primary via-20% to-primary bg-clip-text text-transparent drop-shadow-sm">
-                  Aesthetic Precision
+                <span className="shiny-text-primary drop-shadow-sm">
+                  & Aesthetic Excellence
                 </span>
                 {/* Soft Glow to highlight text */}
                 <span className="absolute inset-0 bg-primary/5 blur-xl -z-10 opacity-30" />
@@ -422,10 +336,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-[#475569] text-base md:text-lg mb-10 leading-[1.6] font-medium max-w-2xl"
+              className="text-[#475569] text-sm md:text-base mb-10 leading-[1.6] font-medium max-w-3xl mx-auto px-4"
             >
-              Experience the perfect harmony of medical precision and aesthetic artistry. <br className="hidden md:block" />
-              Where world-class expertise meets personalized care for your transformation.
+              Experience the perfect harmony of dental precision and aesthetic excellence. <br className="hidden md:block" />
+              Where world-class expertise meets personalized care for your smile transformation.
             </motion.p>
 
             {/* CTA Section */}
