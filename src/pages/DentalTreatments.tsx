@@ -129,13 +129,13 @@ export default function DentalTreatments() {
           ))}
         </div>
         
-        <div className="container-custom relative z-10 pt-10 pb-24">
+        <div className="container-custom relative z-10 pt-24 md:pt-10 pb-24">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="w-full lg:w-1/2"
+              className="w-full lg:w-1/2 text-center lg:text-left"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/80 text-[10px] font-bold mb-6 uppercase tracking-widest">
                 <Star className="w-3 h-3 fill-accent text-accent" />
@@ -145,11 +145,11 @@ export default function DentalTreatments() {
                 Advanced Dental Care <br />
                 <span className="text-accent text-2xl md:text-3xl lg:text-4xl block mt-1">for a Confident Smile</span>
               </h1>
-              <p className="text-base md:text-lg text-white/70 mb-8 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg text-white/70 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 Experience precision-driven dental treatments designed to restore, enhance, and protect your smile with expert care.
               </p>
               
-              <div className="flex flex-wrap gap-6 mb-10">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 mb-10">
                 {[
                   "Pain-Free and Comfortable Treatments",
                   "20+ Years of Expertise",
@@ -292,7 +292,7 @@ export default function DentalTreatments() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity" />
                 </div>
                 <div className="p-8">
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">

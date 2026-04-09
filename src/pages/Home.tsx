@@ -72,7 +72,7 @@ const testimonials = [
     content: "The dental treatment was exceptional. The doctors were very patient and explained every step of the procedure. I'm extremely satisfied with the results.",
     rating: 5,
     thumbnail: "https://image2url.com/r2/default/images/1773852790845-25a5c656-84a2-417e-af5c-1e59fd550bea.png",
-    videoUrl: "https://www.youtube.com/embed/q0GZPiQe0O4",
+    videoUrl: "https://image2url.com/r2/default/videos/1775633981913-55200b42-f741-4dde-8af6-5fd8e91402ea.mp4",
     image: "https://picsum.photos/seed/p5/100/100"
   },
   {
@@ -83,7 +83,7 @@ const testimonials = [
     content: "The transformation is unbelievable. I never thought my smile could look this natural and perfect. The team at Apollo is truly exceptional.",
     rating: 5,
     thumbnail: "https://image2url.com/r2/default/images/1773852082653-8239c4fc-df55-4617-9926-9f4210ee1746.png",
-    videoUrl: "https://www.youtube.com/embed/VtWQFOrHZGs",
+    videoUrl: "https://image2url.com/r2/default/videos/1775634392898-6d99cd53-48bb-47d5-966f-e0782dab1dfe.mp4",
     image: "https://picsum.photos/seed/p6/100/100"
   },
   {
@@ -179,12 +179,21 @@ export default function Home() {
               </button>
 
               {activeMedia.type === 'video' ? (
-                <iframe
-                  src={`${activeMedia.url}?autoplay=1`}
-                  className="w-full h-full border-none"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
+                activeMedia.url.includes('youtube.com') || activeMedia.url.includes('youtu.be') ? (
+                  <iframe
+                    src={`${activeMedia.url}?autoplay=1`}
+                    className="w-full h-full border-none"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video 
+                    src={activeMedia.url} 
+                    className="w-full h-full" 
+                    controls 
+                    autoPlay 
+                  />
+                )
               ) : (
                 <img 
                   src={activeMedia.url} 
@@ -333,7 +342,7 @@ export default function Home() {
                 }}
                 className="relative block text-2xl md:text-4xl lg:text-5xl font-bold italic"
               >
-                <span className="shiny-text-primary drop-shadow-sm">
+                <span className="shiny-text-primary drop-shadow-sm pr-4 pb-1">
                   & Aesthetic Excellence
                 </span>
                 {/* Soft Glow to highlight text */}
@@ -436,7 +445,7 @@ export default function Home() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-primary p-6 rounded-[1.5rem] shadow-premium text-white max-w-[200px] hidden md:block">
                 <h4 className="text-2xl font-bold mb-1">15+</h4>
@@ -740,7 +749,7 @@ export default function Home() {
                     className="w-full h-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 z-20" />
                 </div>
                 <div className="p-3 text-center">
                   <h4 className="text-sm font-bold text-text-dark mb-0.5 truncate">{doc.name}</h4>
@@ -784,7 +793,7 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="relative h-[500px] md:h-[450px] overflow-hidden rounded-[3rem] shadow-premium bg-white border border-slate-100">
+            <div className="relative min-h-[500px] h-auto md:h-[450px] overflow-hidden rounded-[3rem] shadow-premium bg-white border border-slate-100">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={testimonialIndex}
@@ -800,12 +809,21 @@ export default function Home() {
                       <div className="relative w-full h-full">
                         {playingVideoId === testimonials[testimonialIndex].id ? (
                           <div className="relative w-full h-full bg-black">
-                            <iframe
-                              src={`${testimonials[testimonialIndex].videoUrl}?autoplay=1&rel=0&modestbranding=1`}
-                              className="w-full h-full border-none"
-                              allow="autoplay; encrypted-media"
-                              allowFullScreen
-                            />
+                            {testimonials[testimonialIndex].videoUrl.includes('youtube.com') || testimonials[testimonialIndex].videoUrl.includes('youtu.be') ? (
+                              <iframe
+                                src={`${testimonials[testimonialIndex].videoUrl}?autoplay=1&rel=0&modestbranding=1`}
+                                className="w-full h-full border-none"
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                              />
+                            ) : (
+                              <video 
+                                src={testimonials[testimonialIndex].videoUrl} 
+                                className="w-full h-full" 
+                                controls 
+                                autoPlay 
+                              />
+                            )}
                             <button 
                               onClick={() => setPlayingVideoId(null)}
                               className="absolute top-4 right-4 z-10 w-8 h-8 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all"
@@ -857,8 +875,8 @@ export default function Home() {
                             Photo Result
                           </span>
                         </div>
-                        <div className="absolute inset-0 bg-black/0 group-hover/photo:bg-black/10 transition-colors flex items-center justify-center">
-                          <Maximize2 className="w-10 h-10 text-white opacity-0 group-hover/photo:opacity-100 transition-all scale-50 group-hover/photo:scale-100" />
+                        <div className="absolute inset-0 bg-black/0 md:group-hover/photo:bg-black/10 transition-colors flex items-center justify-center">
+                          <Maximize2 className="w-10 h-10 text-white opacity-100 md:opacity-0 md:group-hover/photo:opacity-100 transition-all scale-100 md:scale-50 md:group-hover/photo:scale-100" />
                         </div>
                       </div>
                     )}
@@ -877,8 +895,8 @@ export default function Home() {
                             Handwritten
                           </span>
                         </div>
-                        <div className="absolute inset-0 bg-black/0 group-hover/hand:bg-black/10 transition-colors flex items-center justify-center">
-                          <Maximize2 className="w-10 h-10 text-white opacity-0 group-hover/hand:opacity-100 transition-all scale-50 group-hover/hand:scale-100" />
+                        <div className="absolute inset-0 bg-black/0 md:group-hover/hand:bg-black/10 transition-colors flex items-center justify-center">
+                          <Maximize2 className="w-10 h-10 text-white opacity-100 md:opacity-0 md:group-hover/hand:opacity-100 transition-all scale-100 md:scale-50 md:group-hover/hand:scale-100" />
                         </div>
                       </div>
                     )}
@@ -1055,7 +1073,7 @@ export default function Home() {
                     A randomized clinical study evaluating regenerative results in Grade II furcation defects. Published in the Journal of Pharmacy and Bioallied Sciences.
                   </p>
                   <a 
-                    href="https://journals.lww.com/jpbs/fulltext/2026/02001/comparative_clinical_evaluation_of_platelet_rich.64.aspx"
+                    href="https://straight-chocolate-13f0wy0vbs.edgeone.app/jpbs_1729_25_R2_OA.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 text-primary-light font-bold text-lg hover:text-white transition-colors group/link"

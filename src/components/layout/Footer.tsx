@@ -90,23 +90,38 @@ export default function Footer() {
           ))}
 
           <div>
-            <h4 className="text-lg font-bold mb-6">Contact Info</h4>
-            <ul className="flex flex-col gap-6">
-              <li className="flex gap-4">
-                <MapPin className="w-6 h-6 text-primary-light shrink-0" />
-                <span className="text-slate-400 text-sm">
-                  RS Puram & Peelamedu, Coimbatore, Tamil Nadu, India
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <Phone className="w-6 h-6 text-primary-light shrink-0" />
-                <span className="text-slate-400 text-sm">+91 99446 86569</span>
-              </li>
-              <li className="flex gap-4">
-                <Mail className="w-6 h-6 text-primary-light shrink-0" />
-                <span className="text-slate-400 text-sm">drmanimekalaiperio@gmail.com</span>
-              </li>
-            </ul>
+            <h4 className="text-lg font-bold mb-6">Our Branches</h4>
+            <div className="flex flex-col gap-8">
+              {/* Coimbatore Branch */}
+              <div className="flex flex-col gap-3">
+                <p className="text-primary-light text-[10px] font-bold uppercase tracking-widest">Coimbatore (RS Puram)</p>
+                <ul className="flex flex-col gap-3">
+                  <li className="flex gap-3">
+                    <MapPin className="w-4 h-4 text-primary-light shrink-0" />
+                    <span className="text-slate-400 text-xs">581, DB Road, RS Puram, Coimbatore</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <Phone className="w-4 h-4 text-primary-light shrink-0" />
+                    <span className="text-slate-400 text-xs">99446 86569, 0422-4350861, 93840 05101</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Chennai Branch */}
+              <div className="flex flex-col gap-3">
+                <p className="text-primary-light text-[10px] font-bold uppercase tracking-widest">Chennai (Tiruporur)</p>
+                <ul className="flex flex-col gap-3">
+                  <li className="flex gap-3">
+                    <MapPin className="w-4 h-4 text-primary-light shrink-0" />
+                    <span className="text-slate-400 text-xs">No 15, near Ambedkar Roundana statue, Tiruporur, Chengalpattu - 603110</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <Phone className="w-4 h-4 text-primary-light shrink-0" />
+                    <span className="text-slate-400 text-xs">99446 86569, 91504 56054, 93840 05103</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -4,29 +4,30 @@ import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react';
 
 const branches = [
   {
-    name: 'RS Puram Branch',
+    name: 'Apollo Dental Clinic (Main Branch)',
     city: 'Coimbatore',
-    address: '123, West Sambandam Road, RS Puram, Coimbatore - 641002',
-    phone: '+91 98765 43210',
-    email: 'rspuram@apolloclinic.com',
+    address: '581, DB Road, RS Puram, Coimbatore',
+    phone: '99446 86569, 0422-4350861, 93840 05101',
+    email: 'drmanimekalaiperio@gmail.com',
     hours: 'Mon - Sat: 9:00 AM - 8:00 PM',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.332827431114!2d76.9484!3d11.0124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDAwJzQ0LjYiTiA3NsKwNTYnNTQuMiJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin'
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.332827431114!2d76.9498661!3d11.012607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8591d78a20237%3A0x7444c1ee3a0acefe!2sApollo%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1712644785644!5m2!1sen!2sin',
+    isMain: true
   },
   {
-    name: 'Peelamedu Branch',
-    city: 'Coimbatore',
-    address: '456, Avinashi Road, Peelamedu, Coimbatore - 641004',
-    phone: '+91 98765 43211',
-    email: 'peelamedu@apolloclinic.com',
-    hours: 'Mon - Sat: 9:00 AM - 8:00 PM',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.332827431114!2d77.0000!3d11.0200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDAxJzEyLjAiTiA3N8KwMDAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin'
-  },
-  {
-    name: 'Upcoming Branch',
+    name: 'Apollo Dental and Cosmetology Clinics',
     city: 'Chennai',
-    address: 'Coming Soon to Anna Nagar, Chennai',
+    address: 'No 15, Near Ambedkar Roundana Statue, Tiruporur Taluk, Chengalpattu District, PIN: 603110',
+    phone: '99446 86569, 91504 56054, 93840 05103',
+    email: 'drmanimekalaiperio@gmail.com',
+    hours: 'Mon - Sat: 9:00 AM - 8:00 PM',
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3893.428574169!2d80.188!3d12.727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5250!2sApollo%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1712644785644!5m2!1sen!2sin'
+  },
+  {
+    name: 'Tiruppur Branch',
+    city: 'Tiruppur',
+    address: 'Coming Soon to Tiruppur',
     phone: 'TBA',
-    email: 'info@apolloclinic.com',
+    email: 'drmanimekalaiperio@gmail.com',
     hours: 'Opening Soon',
     isUpcoming: true
   }
@@ -34,64 +35,31 @@ const branches = [
 
 export default function Branches() {
   return (
-    <div className="pt-20">
-      <section className="bg-accent py-24">
-        <div className="container-custom text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-text-dark mb-6">Our Branches</h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Conveniently located across major cities to bring premium healthcare closer to you.
+    <div className="pt-20 bg-slate-50 min-h-screen">
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-slate-900 -z-10" />
+        <div className="container-custom text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/20 text-primary-light text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 border border-primary/20">
+            <MapPin className="w-4 h-4" /> Our Locations
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Our Branches</h1>
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            Conveniently located across major cities to bring premium healthcare and aesthetic excellence closer to you.
           </p>
         </div>
       </section>
 
-      <section className="section-padding bg-white">
+      <section className="py-24">
         <div className="container-custom">
-          <div className="grid grid-cols-1 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {branches.map((branch, i) => (
-              <div key={i} className={`flex flex-col lg:flex-row gap-12 bg-soft-gray rounded-[4rem] overflow-hidden border border-slate-100 ${branch.isUpcoming ? 'opacity-70 grayscale' : ''}`}>
-                <div className="flex-1 p-12 md:p-20">
-                  <div className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6">
-                    {branch.city}
-                  </div>
-                  <h2 className="text-4xl font-bold text-text-dark mb-8">{branch.name}</h2>
-                  
-                  <div className="space-y-6 mb-10">
-                    <div className="flex gap-4">
-                      <MapPin className="w-6 h-6 text-primary shrink-0" />
-                      <p className="text-slate-600">{branch.address}</p>
-                    </div>
-                    <div className="flex gap-4">
-                      <Phone className="w-6 h-6 text-primary shrink-0" />
-                      <p className="text-slate-600">{branch.phone}</p>
-                    </div>
-                    <div className="flex gap-4">
-                      <Mail className="w-6 h-6 text-primary shrink-0" />
-                      <p className="text-slate-600">{branch.email}</p>
-                    </div>
-                    <div className="flex gap-4">
-                      <Clock className="w-6 h-6 text-primary shrink-0" />
-                      <p className="text-slate-600">{branch.hours}</p>
-                    </div>
-                  </div>
-
-                  {!branch.isUpcoming && (
-                    <div className="flex flex-wrap gap-4">
-                      <button className="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-premium hover:bg-primary-dark transition-all">
-                        Book Appointment
-                      </button>
-                      <a 
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.address)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-full font-bold hover:bg-slate-50 transition-all flex items-center gap-2"
-                      >
-                        Get Directions <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </div>
-                  )}
-                </div>
-                {!branch.isUpcoming && (
-                  <div className="flex-1 min-h-[400px]">
+              <div 
+                key={i} 
+                className={`group bg-white rounded-[3rem] overflow-hidden border border-slate-100 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col ${branch.isUpcoming ? 'opacity-80' : ''}`}
+              >
+                {/* Map/Placeholder Header */}
+                <div className="h-[300px] relative overflow-hidden bg-slate-100">
+                  {!branch.isUpcoming ? (
                     <iframe
                       src={branch.mapUrl}
                       width="100%"
@@ -100,18 +68,83 @@ export default function Branches() {
                       allowFullScreen
                       loading="lazy"
                       title={branch.name}
+                      className="grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                     />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 bg-slate-50">
+                      <MapPin className="w-16 h-16 mb-4 opacity-20" />
+                      <span className="text-xl font-bold uppercase tracking-widest opacity-30">Coming Soon</span>
+                    </div>
+                  )}
+                  
+                  <div className="absolute top-6 left-6">
+                    <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg ${
+                      branch.isMain ? 'bg-primary text-white' : 'bg-white text-slate-900'
+                    }`}>
+                      {branch.city} {branch.isMain && '• Main Branch'}
+                    </span>
                   </div>
-                )}
-                {branch.isUpcoming && (
-                  <div className="flex-1 bg-slate-200 flex items-center justify-center p-20 text-center">
-                    <div>
-                      <MapPin className="w-20 h-20 text-slate-400 mx-auto mb-6" />
-                      <h3 className="text-3xl font-bold text-slate-500">Coming Soon</h3>
-                      <p className="text-slate-400 mt-4">We are expanding our reach to serve you better.</p>
+                </div>
+
+                {/* Content */}
+                <div className="p-10 flex-1 flex flex-col">
+                  <h2 className="text-2xl font-bold text-slate-900 mb-6 group-hover:text-primary transition-colors">{branch.name}</h2>
+                  
+                  <div className="space-y-5 mb-8 flex-1">
+                    <div className="flex gap-4 items-start">
+                      <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                        <MapPin className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Address</p>
+                        <p className="text-sm text-slate-600 font-medium leading-relaxed">{branch.address}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-4 items-start">
+                      <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                        <Phone className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Contact</p>
+                        <p className="text-sm text-slate-600 font-medium">{branch.phone}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4 items-start">
+                      <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                        <Clock className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Hours</p>
+                        <p className="text-sm text-slate-600 font-medium">{branch.hours}</p>
+                      </div>
                     </div>
                   </div>
-                )}
+
+                  {!branch.isUpcoming ? (
+                    <div className="pt-8 border-t border-slate-50 flex flex-wrap gap-4">
+                      <button className="flex-1 bg-primary text-white px-6 py-3.5 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:bg-slate-900 transition-all transform active:scale-95">
+                        Book Appointment
+                      </button>
+                      <a 
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.address)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3.5 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center justify-center"
+                        title="Get Directions"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </a>
+                    </div>
+                  ) : (
+                    <div className="pt-8 border-t border-slate-50">
+                      <button disabled className="w-full bg-slate-100 text-slate-400 px-6 py-3.5 rounded-2xl font-bold cursor-not-allowed">
+                        Launching Soon
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

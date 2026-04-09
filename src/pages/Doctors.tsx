@@ -28,7 +28,7 @@ export default function Doctors() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <SectionHeader title="Core Medical Team" subtitle="Our Specialists" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {coreDoctors.map((doc, i) => (
               <motion.div
                 key={i}
@@ -37,7 +37,7 @@ export default function Doctors() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <div className="aspect-[3/4] rounded-[3rem] overflow-hidden shadow-soft group-hover:shadow-premium transition-all mb-8">
+                <div className="aspect-[4/5] md:aspect-[3/4] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-soft group-hover:shadow-premium transition-all mb-6 md:mb-8">
                   <img
                     src={doc.img}
                     alt={doc.name}

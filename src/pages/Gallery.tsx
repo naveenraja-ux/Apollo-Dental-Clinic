@@ -10,6 +10,13 @@ const galleryImages = [
   { id: 2, category: 'Awards', url: 'https://image2url.com/r2/default/images/1774075002415-01e64b62-ace2-49bc-b4a6-866167f5f778.jpeg' },
   { id: 3, category: 'Awards', url: 'https://image2url.com/r2/default/images/1774075115979-72ae02d4-919b-4274-b2b3-1a0971027703.jpeg' },
   { id: 4, category: 'Awards', url: 'https://image2url.com/r2/default/images/1774075180339-d94df6b9-987a-42db-b827-a33b41867a7b.jpeg' },
+  { id: 10, category: 'Awards', url: 'https://far-moccasin-kwvkuw7gxz.edgeone.app/7.png' },
+  { id: 11, category: 'Awards', url: 'https://fond-green-xkijddfcwe.edgeone.app/8.png' },
+  { id: 12, category: 'Awards', url: 'https://anonymous-teal-hdazggrewi.edgeone.app/2.png' },
+  { id: 13, category: 'Awards', url: 'https://enormous-magenta-su6fw1nwzo.edgeone.app/3.png' },
+  { id: 14, category: 'Awards', url: 'https://image2url.com/r2/default/images/1775629927555-fd37f94f-27be-4f6e-a3b3-cbbe67288544.png' },
+  { id: 15, category: 'Awards', url: 'https://image2url.com/r2/default/images/1775629973936-8529e98c-abf5-4177-a78d-a21288f53708.png' },
+  { id: 16, category: 'Awards', url: 'https://image2url.com/r2/default/images/1775629998930-b34062f4-5675-41a8-a105-a0a950fe5e88.png' },
   
   // Clinical Entities
   { id: 5, category: 'Clinical Entities', url: 'https://image2url.com/r2/default/images/1774075387289-f964dfc0-9fcb-444d-a614-50e6c092adcb.jpeg' },
@@ -85,7 +92,7 @@ export default function Gallery() {
                   />
                   
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-slate-900/40 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30">
                       <Maximize2 className="w-7 h-7" />
                     </div>

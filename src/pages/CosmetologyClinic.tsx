@@ -15,7 +15,9 @@ import {
   Users,
   Award,
   Clock,
-  Activity
+  Activity,
+  Play,
+  X
 } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 
@@ -141,6 +143,7 @@ const whyChooseCards = [
 export default function CosmetologyClinic() {
   const { id } = useParams();
   const [selectedId, setSelectedId] = useState(id || 'skin');
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
   const activeTreatment = treatmentCategories.find(t => t.id === selectedId) || treatmentCategories[0];
 
   return (
@@ -320,13 +323,40 @@ export default function CosmetologyClinic() {
                   </div>
                 </div>
 
-                <div className="aspect-video lg:aspect-[16/9] rounded-xl overflow-hidden shadow-lg max-h-[320px]">
-                  <img
-                    src={activeTreatment.image}
-                    alt={activeTreatment.title}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
+                <div className="relative aspect-video lg:aspect-[16/9] rounded-xl overflow-hidden shadow-lg max-h-[320px] group">
+                  {playingVideo ? (
+                    <div className="relative w-full h-full bg-black">
+                      <video 
+                        src={playingVideo} 
+                        className="w-full h-full object-cover" 
+                        controls 
+                        autoPlay 
+                      />
+                      <button 
+                        onClick={() => setPlayingVideo(null)}
+                        className="absolute top-4 right-4 z-10 w-8 h-8 bg-black/50 hover:bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div 
+                      className="relative w-full h-full cursor-pointer"
+                      onClick={() => setPlayingVideo(selectedId === 'skin' ? "https://image2url.com/r2/default/videos/1775635168758-f4538582-1831-446c-a75b-16f12dd407db.mp4" : "https://image2url.com/r2/default/videos/1775635234029-919355fd-ea34-4f17-8334-4573e8f41637.mp4")}
+                    >
+                      <img
+                        src={activeTreatment.image}
+                        alt={activeTreatment.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                        <div className="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary shadow-2xl transform group-hover:scale-110 transition-all duration-500">
+                          <Play className="w-8 h-8 fill-primary ml-1" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -378,7 +408,7 @@ export default function CosmetologyClinic() {
                   </p>
                   <div className="w-8 h-1 bg-accent rounded-full group-hover:w-full transition-all duration-500" />
                 </div>
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500 shadow-[0_0_40px_rgba(90,41,96,0.15)]" />
+                <div className="absolute inset-0 rounded-3xl opacity-100 md:opacity-0 md:group-hover:opacity-100 pointer-events-none transition-opacity duration-500 shadow-[0_0_40px_rgba(90,41,96,0.15)]" />
               </motion.div>
             ))}
           </div>

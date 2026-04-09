@@ -152,7 +152,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-2xl border-t border-slate-100 shadow-2xl overflow-hidden z-40"
+            className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-2xl border-t border-slate-100 shadow-2xl overflow-y-auto z-40 max-h-[calc(100vh-80px)]"
           >
             <div className="container-custom py-12 flex flex-col gap-10">
               <div className="flex flex-col gap-6">

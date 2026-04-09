@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import SectionHeader from '../components/ui/SectionHeader';
 import { 
@@ -45,7 +46,7 @@ export default function About() {
   return (
     <div className="overflow-hidden">
       {/* 🧩 SECTION 1: HERO ABOUT (Intro Section) */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-20 pb-20">
+      <section className="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden pt-24 md:pt-20 pb-20">
         {/* Background Image with Soft Light Effect */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -224,6 +225,22 @@ export default function About() {
                   </motion.div>
                 ))}
               </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="mt-10"
+              >
+                <Link 
+                  to="/publications"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-2xl font-bold text-sm hover:bg-primary-dark transition-all shadow-premium group"
+                >
+                  View My Publication
+                  <BookOpen className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                </Link>
+              </motion.div>
             </motion.div>
 
             {/* Right Side: Image Card */}

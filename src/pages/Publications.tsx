@@ -1,6 +1,6 @@
 import React from 'react';
 import SectionHeader from '../components/ui/SectionHeader';
-import { BookOpen, FileText, Presentation, Lightbulb, ExternalLink, Award, GraduationCap, Microscope } from 'lucide-react';
+import { BookOpen, FileText, Presentation, Lightbulb, ExternalLink, Award, GraduationCap, Microscope, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const stats = [
@@ -12,27 +12,42 @@ const stats = [
 const researchCategories = [
   {
     id: 'thesis',
-    title: 'Thesis / Research Studies',
+    title: 'Thesis / Research Work',
     icon: GraduationCap,
     items: [
       {
-        title: 'Comparative Clinical Evaluation of Platelet-Rich Fibrin with and without Bioactive Glass Graft (PerioGlas) In Managing Mandibular Grade II Furcation Defects',
-        subtitle: 'A Randomized Clinical Study',
-        description: 'A comprehensive clinical study evaluating the regenerative potential of PRF combined with bioactive glass in treating complex periodontal defects.',
+        title: 'Periodontal Regeneration Research Study',
+        focus: 'Advanced periodontal treatment techniques',
+        includes: [
+          'Platelet-Rich Fibrin (PRF)',
+          'Bone graft materials (PerioGlas)',
+          'Clinical evaluation methods'
+        ],
+        outcome: [
+          'Improved tissue healing and bone regeneration',
+          'Evidence-based clinical insights'
+        ],
+        link: 'https://straight-chocolate-13f0wy0vbs.edgeone.app/jpbs_1729_25_R2_OA.pdf',
         year: '2024'
       }
     ]
   },
   {
     id: 'publications',
-    title: 'Publications (Journal Articles)',
+    title: 'Journal Publications',
     icon: FileText,
     items: [
       {
-        title: 'Comparative Clinical Evaluation of Platelet-Rich Fibrin with and without Bioactive Glass Graft (PerioGlas) In Managing Mandibular Grade II Furcation Defects',
+        title: 'Comparative Clinical Evaluation of Platelet-Rich Fibrin with and without Bioactive Glass (PerioGlas)',
         journal: 'Journal of Pharmacy and Bioallied Sciences',
-        link: 'https://journals.lww.com/jpbs/fulltext/2026/02001/comparative_clinical_evaluation_of_platelet_rich.64.aspx',
         year: '2026',
+        type: 'Clinical Research Study',
+        highlights: [
+          'Evaluates treatment of mandibular Grade II furcation defects',
+          'Compares PRF alone vs PRF + PerioGlas',
+          'Combination therapy showed better bone regeneration'
+        ],
+        link: 'https://straight-chocolate-13f0wy0vbs.edgeone.app/jpbs_1729_25_R2_OA.pdf',
         isFeatured: true
       }
     ]
@@ -75,14 +90,17 @@ const researchCategories = [
     items: [
       {
         title: 'Intra Oral Dental Sensing Equipment',
-        category: 'Design Registration / Patent',
-        description: 'Innovative dental sensing equipment designed for advanced intra-oral diagnostics and precision monitoring.',
-        status: 'Registered',
-        views: [
-          { label: 'Front View', url: 'https://picsum.photos/seed/dental-front/800/600' },
-          { label: 'Side View', url: 'https://picsum.photos/seed/dental-side/800/600' },
-          { label: 'Top View', url: 'https://picsum.photos/seed/dental-top/800/600' }
-        ]
+        type: 'Design Patent',
+        filedUnder: 'The Designs Act, 2001',
+        filingDate: 'December 20, 2025',
+        description: 'Innovative intraoral dental sensing device designed for enhanced diagnostic efficiency with a unique structure and multiple design views.',
+        includes: [
+          'Front, Rear, Top, Bottom Views',
+          'Left & Right Views',
+          'Perspective Design'
+        ],
+        link: 'https://brief-coffee-wfyniiseaf.edgeone.app/combined%20Intra%20Oral%20Dental%20Sensing%20Equipment%20(2).pdf',
+        status: 'Registered'
       }
     ]
   }
@@ -146,7 +164,7 @@ export default function Publications() {
                       className="overflow-hidden"
                     >
                       <div className="pt-4 border-t border-slate-100">
-                        <p className="text-xs text-slate-600 italic">"Comprehensive Guide to Modern Periodontology"</p>
+                        <p className="text-xs text-slate-600 italic">"Tissue Engineering"</p>
                       </div>
                     </motion.div>
                   )}
@@ -226,6 +244,66 @@ export default function Publications() {
       {/* Content Sections */}
       <section className="py-24">
         <div className="container-custom">
+          {/* Our Publication Section */}
+          <div className="mb-32">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
+                <BookOpen className="w-6 h-6" />
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900">Our Publication</h2>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[3rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+              
+              <div className="flex flex-col lg:flex-row gap-12 items-center relative z-10">
+                <div className="lg:w-1/3">
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-2xl group-hover:bg-primary/30 transition-all" />
+                    <div className="relative aspect-[3/4] bg-slate-800 rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden shadow-2xl">
+                      <img 
+                        src="https://image2url.com/r2/default/images/1775550899031-3f4911a8-8bac-462e-9e1c-e5f200067298.png" 
+                        alt="Tissue Engineering Book Cover" 
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="lg:w-2/3">
+                  <span className="inline-block px-4 py-1 bg-primary/20 text-primary-light text-[10px] font-bold tracking-widest uppercase rounded-full mb-6 border border-primary/20">
+                    Featured Book
+                  </span>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6">Tissue Engineering</h3>
+                  <p className="text-lg text-slate-300 leading-relaxed mb-8">
+                    A comprehensive academic exploration into the revolutionary field of tissue engineering, 
+                    focusing on regenerative medicine, biomaterials, and clinical applications in modern dentistry and aesthetics. 
+                    This publication serves as a vital resource for students and professionals alike.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-6">
+                    <a 
+                      href="https://amzn.in/d/0izeSX04" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-primary/20 group"
+                    >
+                      <img src="https://www.amazon.in/favicon.ico" alt="Amazon" className="w-5 h-5 brightness-0 invert" />
+                      Buy on Amazon
+                      <ExternalLink className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                    </a>
+                    <p className="text-sm text-slate-400 italic">Available now on Amazon India</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
           <div className="space-y-24">
             {researchCategories.map((category, catIndex) => (
               <div key={category.id} id={category.id} className="scroll-mt-24">
@@ -266,12 +344,82 @@ export default function Publications() {
                           {item.subtitle && (
                             <p className="text-lg font-medium text-primary mb-4 italic leading-relaxed">{item.subtitle}</p>
                           )}
+                          
+                          {item.type && (
+                            <div className="flex items-center gap-2 mb-4">
+                              <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
+                                item.isFeatured ? 'bg-primary/20 text-primary-light' : 'bg-primary/10 text-primary'
+                              }`}>
+                                {item.type}
+                              </span>
+                              {item.filingDate && (
+                                <span className="text-xs text-slate-400">Filed: {item.filingDate}</span>
+                              )}
+                            </div>
+                          )}
+
+                          {item.filedUnder && (
+                            <p className={`text-sm mb-4 ${item.isFeatured ? 'text-slate-400' : 'text-slate-500'}`}>
+                              Filed Under: <span className="font-bold">{item.filedUnder}</span>
+                            </p>
+                          )}
+
                           {item.journal && (
                             <div className="flex items-center gap-3 mb-4">
                               <BookOpen className="w-5 h-5 text-slate-400" />
                               <span className={`text-base ${item.isFeatured ? 'text-slate-300' : 'text-slate-600'}`}>
                                 {item.journal}
                               </span>
+                            </div>
+                          )}
+
+                          {item.focus && (
+                            <div className="mb-6">
+                              <p className={`text-sm font-bold uppercase tracking-widest mb-2 ${item.isFeatured ? 'text-primary-light' : 'text-primary'}`}>Focus</p>
+                              <p className={`text-lg ${item.isFeatured ? 'text-slate-300' : 'text-slate-700'}`}>{item.focus}</p>
+                            </div>
+                          )}
+
+                          {item.highlights && (
+                            <div className="mb-6">
+                              <p className={`text-sm font-bold uppercase tracking-widest mb-3 ${item.isFeatured ? 'text-primary-light' : 'text-primary'}`}>Key Highlights</p>
+                              <ul className="space-y-2">
+                                {item.highlights.map((h: string, i: number) => (
+                                  <li key={i} className="flex items-start gap-3">
+                                    <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${item.isFeatured ? 'text-primary-light' : 'text-primary'}`} />
+                                    <span className={item.isFeatured ? 'text-slate-300' : 'text-slate-600'}>{h}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {item.includes && (
+                            <div className="mb-6">
+                              <p className={`text-sm font-bold uppercase tracking-widest mb-3 ${item.isFeatured ? 'text-primary-light' : 'text-primary'}`}>Includes</p>
+                              <div className="flex flex-wrap gap-2">
+                                {item.includes.map((inc: string, i: number) => (
+                                  <span key={i} className={`px-4 py-2 rounded-xl text-sm font-medium border ${
+                                    item.isFeatured ? 'bg-white/5 border-white/10 text-slate-300' : 'bg-slate-50 border-slate-100 text-slate-600'
+                                  }`}>
+                                    {inc}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {item.outcome && (
+                            <div className="mb-6">
+                              <p className={`text-sm font-bold uppercase tracking-widest mb-3 ${item.isFeatured ? 'text-primary-light' : 'text-primary'}`}>Outcome</p>
+                              <ul className="space-y-2">
+                                {item.outcome.map((o: string, i: number) => (
+                                  <li key={i} className="flex items-start gap-3">
+                                    <div className={`w-1.5 h-1.5 rounded-full shrink-0 mt-2 ${item.isFeatured ? 'bg-primary-light' : 'bg-primary'}`} />
+                                    <span className={item.isFeatured ? 'text-slate-300' : 'text-slate-600'}>{o}</span>
+                                  </li>
+                                ))}
+                              </ul>
                             </div>
                           )}
                           {item.event && (

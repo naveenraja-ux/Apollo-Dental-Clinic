@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Star, Quote, PlayCircle, Maximize2, X, ChevronRight, ChevronLeft, Camera, Video, PenTool, MessageSquare } from 'lucide-react';
+import { Star, Quote, Play, Maximize2, X, ChevronRight, ChevronLeft, Camera, Video, PenTool, MessageSquare } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 
 const categories = [
@@ -12,22 +12,28 @@ const categories = [
 const testimonialData = {
   dentistry: {
     items: [
-      { id: 'v1', type: 'video', title: 'Smile Transformation', thumbnail: 'https://image2url.com/r2/default/images/1773852082653-8239c4fc-df55-4617-9926-9f4210ee1746.png', url: 'https://www.youtube.com/embed/VtWQFOrHZGs', patient: 'Sowmiya' },
+      { id: 'p4', type: 'photo', url: 'https://image2url.com/r2/default/images/1775631913297-04de2880-97a9-4f55-a88a-50b04b97b37d.png', label: 'Dental Transformation' },
+      { id: 'p5', type: 'photo', url: 'https://image2url.com/r2/default/images/1775632027284-42e4bb5c-4681-4ec7-862a-6b28cb3e2f0f.png', label: 'Patient Smile' },
+      { id: 'p6', type: 'photo', url: 'https://image2url.com/r2/default/images/1775632059036-0d67d34e-71a5-4e25-95c6-7d96aee3ace8.png', label: 'Clinical Result' },
+      { id: 'v7', type: 'video', title: 'Patient Testimonial', thumbnail: 'https://image2url.com/r2/default/images/1775631913297-04de2880-97a9-4f55-a88a-50b04b97b37d.png', url: 'https://image2url.com/r2/default/videos/1775632278818-be37c0f5-7ffe-42a4-b7ee-5e0198995236.mp4', patient: 'Verified Patient' },
+      { id: 'v1', type: 'video', title: 'Smile Transformation', thumbnail: 'https://image2url.com/r2/default/images/1773852082653-8239c4fc-df55-4617-9926-9f4210ee1746.png', url: 'https://image2url.com/r2/default/videos/1775635046901-97f212dd-f38c-4488-9161-30906a366730.mp4', patient: 'Sowmiya' },
       { id: 'r1', type: 'review', name: 'Venkatesh Iyer', text: 'Excellent experience with dental implants. The procedure was smooth and the recovery was very fast.', rating: 5 },
-      { id: 'v3', type: 'video', title: 'Patient Feedback', thumbnail: 'https://img.youtube.com/vi/NpIstwm4Nms/maxresdefault.jpg', url: 'https://www.youtube.com/embed/NpIstwm4Nms', patient: 'Verified Patient' },
+      { id: 'v3', type: 'video', title: 'Patient Feedback', thumbnail: 'https://convenient-amber-2ibj1jqb2o.edgeone.app/WhatsApp%20Image%202026-04-09%20at%2011.31.44%20AM.jpeg', url: 'https://image2url.com/r2/default/videos/1775635099897-949f6e01-1714-45a6-bd17-349f79887e90.mp4', patient: 'Verified Patient' },
       { id: 'p1', type: 'photo', url: 'https://image2url.com/r2/default/images/1773852545091-42c3068c-7541-455a-b766-9516c98b7561.jpeg', label: 'Implant Result' },
-      { id: 'v2', type: 'video', title: 'Dental Implant Experience', thumbnail: 'https://image2url.com/r2/default/images/1773852790845-25a5c656-84a2-417e-af5c-1e59fd550bea.png', url: 'https://www.youtube.com/embed/q0GZPiQe0O4', patient: 'Kavitha Ramakrishnan' },
+      { id: 'v2', type: 'video', title: 'Smile Transformation', thumbnail: 'https://image2url.com/r2/default/images/1773852790845-25a5c656-84a2-417e-af5c-1e59fd550bea.png', url: 'https://image2url.com/r2/default/videos/1775633981913-55200b42-f741-4dde-8af6-5fd8e91402ea.mp4', patient: 'Kavitha Ramakrishnan' },
       { id: 'r2', type: 'review', name: 'Anand Kumar', text: 'The best dental clinic in the city. Very professional and clean.', rating: 5 },
-      { id: 'v4', type: 'video', title: 'Treatment Journey', thumbnail: 'https://img.youtube.com/vi/D6RI-h7PbBk/maxresdefault.jpg', url: 'https://www.youtube.com/embed/D6RI-h7PbBk', patient: 'Verified Patient' },
+      { id: 'v4', type: 'video', title: 'Dental Implant Experience', thumbnail: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2080', url: 'https://image2url.com/r2/default/videos/1775634392898-6d99cd53-48bb-47d5-966f-e0782dab1dfe.mp4', patient: 'Verified Patient' },
       { id: 'p2', type: 'photo', url: 'https://image2url.com/r2/default/images/1774360178545-f6106f49-5d95-4dad-a454-00e7b34915e4.jpeg', label: 'Dental Care Result' },
       { id: 'p3', type: 'photo', url: 'https://image2url.com/r2/default/images/1773852442486-14cb61db-9649-4699-b46b-cd896ab482e5.jpeg', label: 'Dental Procedure Result' },
-      { id: 'v5', type: 'video', title: 'Clinic Experience', thumbnail: 'https://img.youtube.com/vi/sX-NfuTQ_LU/maxresdefault.jpg', url: 'https://www.youtube.com/embed/sX-NfuTQ_LU', patient: 'Verified Patient' },
+      { id: 'v5', type: 'video', title: 'Clinic Experience', thumbnail: 'https://querulous-indigo-hmivxltp0o.edgeone.app/image.png', url: 'https://image2url.com/r2/default/videos/1775634494724-810d4aad-52f6-4008-80cd-5666d48ab9ff.mp4', patient: 'Verified Patient' },
       { id: 'h1', type: 'handwritten', url: 'https://image2url.com/r2/default/images/1773852502006-8b7aad4e-0839-4d30-b6a6-aea8d5f87aa9.jpeg', patient: 'Boothra' },
-      { id: 'v6', type: 'video', title: 'Smile Success', thumbnail: 'https://img.youtube.com/vi/Ra0jx9rX7cA/maxresdefault.jpg', url: 'https://www.youtube.com/embed/Ra0jx9rX7cA', patient: 'Verified Patient' }
+      { id: 'v6', type: 'video', title: 'Smile Success', thumbnail: 'https://image2url.com/r2/default/images/1775714997071-46b062a2-586c-4e67-bd60-fbcd2782092a.png', url: 'https://image2url.com/r2/default/videos/1775634985644-11ee405c-843c-477f-aeca-2bd8d3d888f3.mp4', patient: 'Verified Patient' }
     ]
   },
   cosmetology: {
     items: [
+      { id: 'cv1', type: 'video', title: 'Advanced Skin Treatment', thumbnail: 'https://image2url.com/r2/default/images/1775715052331-6ce6040d-f55a-43d5-b7f7-280b3c9569e1.png', url: 'https://image2url.com/r2/default/videos/1775635168758-f4538582-1831-446c-a75b-16f12dd407db.mp4', patient: 'Cosmetology Patient' },
+      { id: 'cv2', type: 'video', title: 'Laser Procedure Highlights', thumbnail: 'https://image2url.com/r2/default/images/1775715184374-7e08965d-da0d-4941-8898-2f3ec6c20a5c.png', url: 'https://image2url.com/r2/default/videos/1775635234029-919355fd-ea34-4f17-8334-4573e8f41637.mp4', patient: 'Cosmetology Patient' },
       { id: 'r1', type: 'review', name: 'Lakshmi Narayanan', text: "Apollo's skin treatments have transformed my confidence. The doctors are true experts.", rating: 5 },
       { id: 'r2', type: 'review', name: 'Priya Dharshini', text: "The chemical peel treatment was amazing. My skin feels so rejuvenated and glowing.", rating: 5 },
       { id: 'r3', type: 'review', name: 'Rajeshwari', text: "Highly recommend for hair loss treatments. Seeing great results within just a few sessions.", rating: 5 },
@@ -36,8 +42,9 @@ const testimonialData = {
   },
   academy: {
     items: [
-      { id: 'av1', type: 'video', title: 'Academy Training Session', thumbnail: 'https://img.youtube.com/vi/oNy3dIzyojg/maxresdefault.jpg', url: 'https://www.youtube.com/embed/oNy3dIzyojg', patient: 'Student' },
-      { id: 'av2', type: 'video', title: 'Hands-on Workshop', thumbnail: 'https://img.youtube.com/vi/Yoy6qJtt5jU/maxresdefault.jpg', url: 'https://www.youtube.com/embed/Yoy6qJtt5jU', patient: 'Student' },
+      { id: 'av1', type: 'video', title: 'Academy Training', thumbnail: 'https://image2url.com/r2/default/images/1775716427387-641c35ba-a319-416c-b4c8-64ac213017c4.png', url: 'https://image2url.com/r2/default/videos/1775715995544-8859404f-7ec7-41af-9ab1-a3ad150d6782.mp4', patient: 'Student' },
+      { id: 'av2', type: 'video', title: 'Hands-on Workshop', thumbnail: 'https://image2url.com/r2/default/images/1775716522107-baf50949-3c78-4dfa-b3c0-dc6c18d3af93.png', url: 'https://image2url.com/r2/default/videos/1775716111715-dd84ed2d-2b72-4e91-b6e1-da9f182bfbd9.mp4', patient: 'Student' },
+      { id: 'av3', type: 'video', title: 'Academy Excellence', thumbnail: 'https://image2url.com/r2/default/images/1775716591999-67210bbf-b1a2-4720-a876-42ac8c8b8eb9.png', url: 'https://image2url.com/r2/default/videos/1775716168728-63834af8-9847-4d4f-aefc-caea8ef9f12f.mp4', patient: 'Student' },
       { id: 'r1', type: 'review', name: 'Dr. Priya', text: 'The hands-on training at Apollo Academy is exceptional. Highly recommended for aspiring cosmetologists.', rating: 5 },
       { id: 'r2', type: 'review', name: 'Dr. Arun', text: 'Comprehensive curriculum and expert guidance. The best place to learn advanced aesthetic procedures.', rating: 5 }
     ]
@@ -49,6 +56,8 @@ export default function Testimonials() {
   const [activeMedia, setActiveMedia] = useState<{ type: 'video' | 'photo', url: string } | null>(null);
 
   const currentData = testimonialData[activeCategory as keyof typeof testimonialData];
+  const mediaItems = currentData.items.filter((item: any) => item.type !== 'review');
+  const reviewItems = currentData.items.filter((item: any) => item.type === 'review');
 
   return (
     <div className="bg-white min-h-screen">
@@ -100,7 +109,7 @@ export default function Testimonials() {
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
-            {currentData.items.map((item: any) => (
+            {mediaItems.map((item: any) => (
               <motion.div
                 key={item.id}
                 layout
@@ -121,8 +130,8 @@ export default function Testimonials() {
                       referrerPolicy="no-referrer" 
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-14 h-14 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/30 transform group-hover:scale-110 transition-all duration-500 shadow-2xl">
-                        <PlayCircle className="w-7 h-7 fill-white" />
+                      <div className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary shadow-2xl transform group-hover:scale-110 transition-all duration-500">
+                        <Play className="w-8 h-8 fill-primary ml-1" />
                       </div>
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-slate-900/90 to-transparent">
@@ -142,12 +151,12 @@ export default function Testimonials() {
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
                       referrerPolicy="no-referrer" 
                     />
-                    <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-all duration-500 flex items-center justify-center">
-                      <div className="w-10 h-10 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/30 opacity-0 group-hover:opacity-100 transition-all scale-50 group-hover:scale-100 duration-500">
+                    <div className="absolute inset-0 bg-slate-900/0 md:group-hover:bg-slate-900/20 transition-all duration-500 flex items-center justify-center">
+                      <div className="w-10 h-10 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/30 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all scale-100 md:scale-50 md:group-hover:scale-100 duration-500">
                         <Maximize2 className="w-4 h-4" />
                       </div>
                     </div>
-                    <div className="absolute bottom-4 left-4 right-4 p-3 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 text-slate-900 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-500 shadow-xl">
+                    <div className="absolute bottom-4 left-4 right-4 p-3 bg-white/90 backdrop-blur-md rounded-xl border border-white/20 text-slate-900 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 duration-500 shadow-xl">
                       <span className="text-[9px] font-bold uppercase tracking-widest text-primary">{item.label}</span>
                     </div>
                   </div>
@@ -163,8 +172,8 @@ export default function Testimonials() {
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
                       referrerPolicy="no-referrer" 
                     />
-                    <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-all duration-500 flex items-center justify-center">
-                      <div className="w-10 h-10 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/30 opacity-0 group-hover:opacity-100 transition-all scale-50 group-hover:scale-100 duration-500">
+                    <div className="absolute inset-0 bg-slate-900/0 md:group-hover:bg-slate-900/20 transition-all duration-500 flex items-center justify-center">
+                      <div className="w-10 h-10 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/30 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all scale-100 md:scale-50 md:group-hover:scale-100 duration-500">
                         <Maximize2 className="w-4 h-4" />
                       </div>
                     </div>
@@ -175,8 +184,40 @@ export default function Testimonials() {
                     </div>
                   </div>
                 )}
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
 
-                {item.type === 'review' && (
+      {/* Auto-scrolling Reviews Section */}
+      {reviewItems.length > 0 && (
+        <section className="py-20 bg-slate-50/50 overflow-hidden border-y border-slate-100">
+          <div className="container-custom mb-12 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Patient & Student Reviews</h3>
+              <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">
+                Discover why our patients and students trust us for their dental, aesthetic, and educational journeys.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="flex relative">
+            <motion.div 
+              className="flex gap-6 px-4"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ 
+                duration: reviewItems.length * 15, 
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
+            >
+              {[...reviewItems, ...reviewItems].map((item: any, idx) => (
+                <div key={idx} className="w-[300px] md:w-[400px] shrink-0">
                   <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-soft hover:shadow-premium transition-all duration-500 group relative overflow-hidden h-full flex flex-col justify-between">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-xl group-hover:bg-primary/10 transition-colors" />
                     
@@ -204,12 +245,12 @@ export default function Testimonials() {
                       </div>
                     </div>
                   </div>
-                )}
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-      </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Media Modal */}
       <AnimatePresence>
@@ -236,12 +277,21 @@ export default function Testimonials() {
               onClick={(e) => e.stopPropagation()}
             >
               {activeMedia.type === 'video' ? (
-                <iframe
-                  src={`${activeMedia.url}?autoplay=1`}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                activeMedia.url.includes('.mp4') ? (
+                  <video 
+                    src={activeMedia.url} 
+                    controls 
+                    autoPlay 
+                    className="w-full h-full bg-black"
+                  />
+                ) : (
+                  <iframe
+                    src={`${activeMedia.url}?autoplay=1`}
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )
               ) : (
                 <img 
                   src={activeMedia.url} 

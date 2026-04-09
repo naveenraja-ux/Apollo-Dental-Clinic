@@ -22,19 +22,22 @@ import {
   Layers,
   Globe,
   Info,
-  Tag
+  Tag,
+  Play,
+  X
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useEnrollModal } from '../hooks/useEnrollModal';
 
 export default function Academy() {
+  const [playingVideoId, setPlayingVideoId] = React.useState<string | null>(null);
   const { onOpen: onEnrollOpen } = useEnrollModal();
 
   return (
     <div className="">
       {/* Hero */}
-      <section className="relative py-32 md:py-40 bg-slate-900 text-white overflow-hidden">
+      <section className="relative py-24 md:py-40 bg-slate-900 text-white overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 z-0">
           <motion.div
@@ -101,7 +104,7 @@ export default function Academy() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+              className="text-4xl md:text-7xl font-bold mb-8 leading-tight"
             >
               Elevate Your Career in <span className="text-primary-light">Aesthetics</span>
             </motion.h1>
@@ -161,110 +164,193 @@ export default function Academy() {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {/* Card 1: PMU Course */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            {/* Card 1: PGDCC Course */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              id="pgdcc-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white rounded-[2rem] p-8 shadow-xl border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+              className="bg-white rounded-[2rem] p-5 shadow-xl border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
             >
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">PMU (Permanent Makeup) Course</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Professional training program covering permanent makeup techniques from beginner to advanced level with hands-on practical experience.
+              <div className="mb-3">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider rounded-full">Diploma Program</span>
+                  <span className="px-2 py-0.5 bg-emerald-100 text-emerald-600 text-[9px] font-bold uppercase rounded animate-pulse">Includes PMU</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-1">PG Diploma in Clinical Cosmetology (PGDCC)</h3>
+                <p className="text-slate-600 text-[11px] leading-relaxed">
+                  Comprehensive post-graduate diploma covering clinical aspects of cosmetology. <span className="text-primary font-bold">Now includes full PMU Course.</span>
                 </p>
               </div>
 
-              <div className="space-y-6 flex-grow">
-                <div className="flex gap-4 items-start">
-                  <div className="mt-1 text-primary shrink-0"><Info className="w-5 h-5" /></div>
+              <div className="space-y-3 flex-grow">
+                <div className="flex gap-3 items-start">
+                  <div className="mt-1 text-primary shrink-0"><Info className="w-3.5 h-3.5" /></div>
                   <div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">About the Course</div>
-                    <div className="text-sm text-slate-700 font-medium">Professional PMU training focused on real-time practical skills, machine handling, and industry techniques.</div>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">About the Course</div>
+                    <div className="text-[11px] text-slate-700 font-medium">In-depth clinical training for healthcare professionals specializing in aesthetic cosmetology.</div>
                   </div>
                 </div>
-                <div className="flex gap-4 items-start">
-                  <div className="mt-1 text-primary shrink-0"><Star className="w-5 h-5" /></div>
+                <div className="flex gap-3 items-start">
+                  <div className="mt-1 text-primary shrink-0"><Star className="w-3.5 h-3.5" /></div>
                   <div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Key Benefits</div>
-                    <ul className="text-sm text-slate-700 font-medium list-disc list-inside space-y-1">
-                      <li>Hands-on training on live models</li>
-                      <li>Industry-recognized certification</li>
-                      <li>Career support for freelancing or clinic placement</li>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Key Benefits</div>
+                    <ul className="text-[11px] text-slate-700 font-medium list-disc list-inside space-y-0.5">
+                      <li>Advanced clinical protocols</li>
+                      <li><span className="text-emerald-600 font-bold">Includes PMU Mastery</span></li>
+                      <li>Laser & Skin Rejuvenation</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                <div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Course Fees</div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-sm text-slate-400 line-through">₹50,000</span>
-                    <span className="text-2xl font-bold text-primary">₹25,000</span>
+              <div className="mt-4 pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Course Fees</div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-[10px] text-slate-400 line-through">₹50,000</span>
+                      <span className="text-lg font-bold text-primary">₹25,000</span>
+                    </div>
                   </div>
-                  <div className="text-[10px] text-emerald-500 font-bold uppercase">50% Limited Time Offer</div>
+                  <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfJN3ootrQdvPCMP9MGYYbTTiLmafZnGx6tlrJoGcbadLUbtQ/viewform?usp=publish-editor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-1.5 bg-primary text-white rounded-full font-bold hover:bg-slate-900 transition-all shadow-lg shadow-primary/20 text-[11px] text-center"
+                  >
+                    Enroll Now
+                  </a>
                 </div>
-                <button 
-                  onClick={onEnrollOpen}
-                  className="px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-slate-900 transition-all shadow-lg shadow-primary/20"
-                >
-                  Enroll Now
-                </button>
+                <div className="text-[8px] text-emerald-500 font-bold uppercase text-center bg-emerald-50 py-1 rounded-lg">Combined Offer: PGDCC + PMU</div>
               </div>
             </motion.div>
 
-            {/* Card 2: Fellowship Course */}
+            {/* Card 2: New Course for Non-Medicos */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white rounded-[2rem] p-8 shadow-xl border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+              transition={{ delay: 0.1 }}
+              className="bg-white rounded-[2rem] p-5 shadow-xl border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
             >
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">Fellowship in Medical Cosmetology</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Advanced specialization program designed for medical professionals looking to upgrade their expertise and clinical skills.
+              <div className="mb-3">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase tracking-wider rounded-full">Non-Medicos</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-1">PG Diploma in PMU & Laser Aesthetics</h3>
+                <p className="text-slate-600 text-[11px] leading-relaxed">
+                  Specialized diploma for non-medical professionals focusing on permanent makeup and laser aesthetics.
                 </p>
               </div>
 
-              <div className="space-y-6 flex-grow">
-                <div className="flex gap-4 items-start">
-                  <div className="mt-1 text-primary shrink-0"><Info className="w-5 h-5" /></div>
+              <div className="space-y-3 flex-grow">
+                <div className="flex gap-3 items-start">
+                  <div className="mt-1 text-primary shrink-0"><Info className="w-3.5 h-3.5" /></div>
                   <div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">About the Course</div>
-                    <div className="text-sm text-slate-700 font-medium">Specialized training for medical professionals in advanced aesthetic medicine and laser technologies.</div>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">About the Course</div>
+                    <div className="text-[11px] text-slate-700 font-medium">Comprehensive training in PMU techniques combined with laser-based skin procedures.</div>
                   </div>
                 </div>
-                <div className="flex gap-4 items-start">
-                  <div className="mt-1 text-primary shrink-0"><Star className="w-5 h-5" /></div>
+                <div className="flex gap-3 items-start">
+                  <div className="mt-1 text-primary shrink-0"><Star className="w-3.5 h-3.5" /></div>
                   <div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Key Benefits</div>
-                    <ul className="text-sm text-slate-700 font-medium list-disc list-inside space-y-1">
-                      <li>Clinical exposure with medical-grade equipment</li>
-                      <li>Advanced patient management skills</li>
-                      <li>Prestigious Fellowship certification</li>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Key Benefits</div>
+                    <ul className="text-[11px] text-slate-700 font-medium list-disc list-inside space-y-0.5">
+                      <li>Advanced PMU Mastery</li>
+                      <li>Laser Skin Treatments</li>
+                      <li>Business Setup Guidance</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                <div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Course Fees</div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-sm text-slate-400 line-through">₹50,000</span>
-                    <span className="text-2xl font-bold text-primary">₹25,000</span>
+              <div className="mt-4 pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Course Fees</div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg font-bold text-primary">₹25,000</span>
+                    </div>
                   </div>
-                  <div className="text-[10px] text-emerald-500 font-bold uppercase">50% Limited Time Offer</div>
+                  <button 
+                    onClick={onEnrollOpen}
+                    className="px-4 py-1.5 bg-primary text-white rounded-full font-bold hover:bg-slate-900 transition-all shadow-lg shadow-primary/20 text-[11px]"
+                  >
+                    Enroll Now
+                  </button>
                 </div>
-                <button 
-                  onClick={onEnrollOpen}
-                  className="px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-slate-900 transition-all shadow-lg shadow-primary/20"
-                >
-                  Enroll Now
-                </button>
+                <div className="text-[8px] text-purple-500 font-bold uppercase text-center bg-purple-50 py-1 rounded-lg">Career Focused Program</div>
+              </div>
+            </motion.div>
+
+            {/* Card 3: FMC Course (Premium) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-slate-900 rounded-[2rem] p-5 shadow-2xl border-2 border-primary hover:-translate-y-2 transition-all duration-500 flex flex-col relative overflow-hidden group"
+            >
+              {/* Premium Background Accent */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/30 transition-all" />
+              
+              <div className="mb-3 relative z-10">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="px-3 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg shadow-primary/20 flex items-center gap-1.5">
+                    <Award className="w-3 h-3" /> Premium Course
+                  </span>
+                  <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-emerald-500/30">
+                    Doctors Only
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-1">Fellowship in Medical Cosmetology (FMC)</h3>
+                <div className="inline-block px-2 py-0.5 bg-primary/20 text-primary-light text-[9px] font-bold uppercase tracking-widest rounded mb-1">Advanced Course</div>
+                <p className="text-slate-400 text-[11px] leading-relaxed">
+                  Elite fellowship program for medical doctors seeking mastery in advanced medical cosmetology.
+                </p>
+              </div>
+
+              <div className="space-y-3 flex-grow relative z-10">
+                <div className="flex gap-3 items-start">
+                  <div className="mt-1 text-primary-light shrink-0"><Stethoscope className="w-3.5 h-3.5" /></div>
+                  <div>
+                    <div className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Eligibility</div>
+                    <div className="text-[11px] text-slate-200 font-bold">Only for Doctors</div>
+                  </div>
+                </div>
+                <div className="flex gap-3 items-start">
+                  <div className="mt-1 text-primary-light shrink-0"><Star className="w-3.5 h-3.5" /></div>
+                  <div>
+                    <div className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Key Benefits</div>
+                    <ul className="text-[11px] text-slate-300 font-medium list-disc list-inside space-y-0.5">
+                      <li>Advanced clinical specialization</li>
+                      <li>High-end equipment training</li>
+                      <li>FMC Certification</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-white/10 flex flex-col gap-2 relative z-10">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Course Fees</div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg font-bold text-white">₹50,000</span>
+                    </div>
+                  </div>
+                  <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSeJ1yi-WX6b2kixYwCtd7HAX9DTVMWqkZ-iocLdKsVRuCx2QA/viewform?usp=dialog"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-1.5 bg-primary text-white rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all shadow-lg shadow-primary/40 text-[11px] text-center"
+                  >
+                    Apply Now
+                  </a>
+                </div>
+                <div className="text-[8px] text-primary-light font-bold uppercase text-center bg-white/5 py-1 rounded-lg">Exclusive Medical Fellowship</div>
               </div>
             </motion.div>
           </div>
@@ -473,16 +559,20 @@ export default function Academy() {
                   className="flex flex-col gap-4 p-4"
                 >
                   {[
-                    "https://amused-black-m6oha1xosq.edgeone.app/square_image5.png",
-                    "https://roasted-fuchsia-ieafykrysl.edgeone.app/square_image4.png",
-                    "https://vivacious-indigo-qvgnqoqd9x.edgeone.app/square_image3.png",
-                    "https://circular-peach-vcndywoync.edgeone.app/square_image2.png",
-                    "https://entire-bronze-gwrudq3aov.edgeone.app/square_image.png",
-                    "https://amused-black-m6oha1xosq.edgeone.app/square_image5.png",
-                    "https://roasted-fuchsia-ieafykrysl.edgeone.app/square_image4.png",
-                    "https://vivacious-indigo-qvgnqoqd9x.edgeone.app/square_image3.png",
-                    "https://circular-peach-vcndywoync.edgeone.app/square_image2.png",
-                    "https://entire-bronze-gwrudq3aov.edgeone.app/square_image.png",
+                    "https://far-moccasin-kwvkuw7gxz.edgeone.app/7.png",
+                    "https://fond-green-xkijddfcwe.edgeone.app/8.png",
+                    "https://anonymous-teal-hdazggrewi.edgeone.app/2.png",
+                    "https://enormous-magenta-su6fw1nwzo.edgeone.app/3.png",
+                    "https://image2url.com/r2/default/images/1775629927555-fd37f94f-27be-4f6e-a3b3-cbbe67288544.png",
+                    "https://image2url.com/r2/default/images/1775629973936-8529e98c-abf5-4177-a78d-a21288f53708.png",
+                    "https://image2url.com/r2/default/images/1775629998930-b34062f4-5675-41a8-a105-a0a950fe5e88.png",
+                    "https://far-moccasin-kwvkuw7gxz.edgeone.app/7.png",
+                    "https://fond-green-xkijddfcwe.edgeone.app/8.png",
+                    "https://anonymous-teal-hdazggrewi.edgeone.app/2.png",
+                    "https://enormous-magenta-su6fw1nwzo.edgeone.app/3.png",
+                    "https://image2url.com/r2/default/images/1775629927555-fd37f94f-27be-4f6e-a3b3-cbbe67288544.png",
+                    "https://image2url.com/r2/default/images/1775629973936-8529e98c-abf5-4177-a78d-a21288f53708.png",
+                    "https://image2url.com/r2/default/images/1775629998930-b34062f4-5675-41a8-a105-a0a950fe5e88.png",
                   ].map((img, i) => (
                     <div key={i} className="relative w-full h-[300px] rounded-2xl overflow-hidden shadow-md">
                       <img
@@ -510,10 +600,11 @@ export default function Academy() {
                 <h3 className="text-3xl font-bold text-slate-900 mb-4">Training & Success Highlights</h3>
                 <p className="text-slate-600 max-w-2xl mx-auto">Watch our students in action and see the clinical excellence we strive for through our hands-on training sessions.</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto items-start">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 max-w-6xl mx-auto items-start">
                 {[
-                  { id: "oNy3dIzyojg", title: "Clinical Training Session", label: "Hands-on Practice" },
-                  { id: "Yoy6qJtt5jU", title: "Student Success Story", label: "Student Testimonial" }
+                  { id: "av1", url: "https://image2url.com/r2/default/videos/1775715995544-8859404f-7ec7-41af-9ab1-a3ad150d6782.mp4", title: "Academy Training", label: "Hands-on Practice", thumbnail: "https://image2url.com/r2/default/images/1775716427387-641c35ba-a319-416c-b4c8-64ac213017c4.png" },
+                  { id: "av2", url: "https://image2url.com/r2/default/videos/1775716111715-dd84ed2d-2b72-4e91-b6e1-da9f182bfbd9.mp4", title: "Hands-on Workshop", label: "Student Testimonial", thumbnail: "https://image2url.com/r2/default/images/1775716522107-baf50949-3c78-4dfa-b3c0-dc6c18d3af93.png" },
+                  { id: "av3", url: "https://image2url.com/r2/default/videos/1775716168728-63834af8-9847-4d4f-aefc-caea8ef9f12f.mp4", title: "Academy Excellence", label: "Training Highlights", thumbnail: "https://image2url.com/r2/default/images/1775716591999-67210bbf-b1a2-4720-a876-42ac8c8b8eb9.png" }
                 ].map((video, i) => (
                   <motion.div
                     key={i}
@@ -528,13 +619,49 @@ export default function Academy() {
                       {/* Notch */}
                       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-slate-900 rounded-b-xl z-20" />
                       
-                      <iframe
-                        src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1&controls=1`}
-                        title={video.title}
-                        className="w-full h-full relative z-10"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                      {playingVideoId === video.id ? (
+                        <div className="relative w-full h-full">
+                          {video.url.includes('youtube.com') || video.url.includes('youtu.be') ? (
+                            <iframe
+                              src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1&controls=1`}
+                              title={video.title}
+                              className="w-full h-full relative z-10"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            ></iframe>
+                          ) : (
+                            <video 
+                              src={video.url} 
+                              className="w-full h-full object-cover relative z-10" 
+                              controls 
+                              autoPlay 
+                            />
+                          )}
+                          <button 
+                            onClick={() => setPlayingVideoId(null)}
+                            className="absolute top-8 right-4 z-30 w-8 h-8 bg-black/50 hover:bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ) : (
+                        <div 
+                          className="relative w-full h-full cursor-pointer"
+                          onClick={() => setPlayingVideoId(video.id)}
+                        >
+                          <img 
+                            src={video.thumbnail || `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                            alt={video.title}
+                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center z-20">
+                            <div className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary shadow-2xl transform group-hover:scale-110 transition-all duration-500">
+                              <Play className="w-8 h-8 fill-primary ml-1" />
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                     
                     <div className="mt-8 text-center">
