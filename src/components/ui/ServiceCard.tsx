@@ -33,6 +33,8 @@ export default function ServiceCard({ title, description, href, image }: Service
           alt={typeof title === 'string' ? title : 'Service'}
           className="w-full h-full object-contain transition-transform duration-700 relative z-0"
           referrerPolicy="no-referrer"
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
       </div>

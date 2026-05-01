@@ -43,6 +43,8 @@ export default function Doctors() {
                     alt={doc.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="text-center">
@@ -75,6 +77,8 @@ export default function Doctors() {
                     alt={doc.name}
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="text-center">

@@ -89,6 +89,8 @@ export default function Gallery() {
                     alt={img.category}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                   />
                   
                   {/* Overlay */}
@@ -148,6 +150,7 @@ export default function Gallery() {
               alt="Full view"
               className="max-w-full max-h-full rounded-3xl shadow-2xl object-contain"
               referrerPolicy="no-referrer"
+              decoding="async"
             />
           </motion.div>
         )}

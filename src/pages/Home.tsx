@@ -199,6 +199,8 @@ export default function Home() {
                   src={activeMedia.url} 
                   alt="Full view" 
                   className="w-full h-full object-contain"
+                  referrerPolicy="no-referrer"
+                  decoding="async"
                 />
               )}
             </motion.div>
@@ -444,6 +446,8 @@ export default function Home() {
                   alt="Apollo Clinic"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
               </div>
@@ -566,6 +570,8 @@ export default function Home() {
                   alt="PMU Training Session" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent" />
               </div>
@@ -664,6 +670,8 @@ export default function Home() {
                         alt={item.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-20" />
                       <div className="absolute bottom-6 left-6 right-6 z-30">
@@ -701,6 +709,8 @@ export default function Home() {
                         alt={item.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-20" />
                       <div className="absolute bottom-6 left-6 right-6 z-30">
@@ -748,6 +758,8 @@ export default function Home() {
                     alt={doc.name}
                     className="w-full h-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 z-20" />
                 </div>
@@ -841,6 +853,9 @@ export default function Home() {
                               src={testimonials[testimonialIndex].thumbnail} 
                               alt="Video Thumbnail" 
                               className="w-full h-full object-cover transition-transform duration-1000 group-hover/video:scale-105" 
+                              referrerPolicy="no-referrer"
+                              loading="lazy"
+                              decoding="async"
                             />
                             <div className="absolute inset-0 bg-black/20 group-hover/video:bg-black/40 transition-colors flex items-center justify-center">
                               <motion.div 
@@ -869,6 +884,9 @@ export default function Home() {
                           src={testimonials[testimonialIndex].mediaUrl} 
                           alt="Patient Result" 
                           className="w-full h-full object-cover transition-transform duration-1000 group-hover/photo:scale-105" 
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="absolute top-8 left-8">
                           <span className="bg-emerald-500/90 backdrop-blur-md text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
@@ -889,6 +907,9 @@ export default function Home() {
                           src={testimonials[testimonialIndex].handwrittenImg} 
                           alt="Handwritten Review" 
                           className="w-full h-full object-cover transition-transform duration-1000 group-hover/hand:scale-105" 
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="absolute top-8 left-8">
                           <span className="bg-amber-500/90 backdrop-blur-md text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
@@ -939,6 +960,8 @@ export default function Home() {
                             alt={testimonials[testimonialIndex].name} 
                             className="w-full h-full object-cover" 
                             referrerPolicy="no-referrer" 
+                            loading="lazy"
+                            decoding="async"
                           />
                         </div>
                         <div>

@@ -33,7 +33,7 @@ export default function PatientStories() {
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full overflow-hidden">
-                    <img src={`https://picsum.photos/seed/p${i}/100/100`} alt="Patient" referrerPolicy="no-referrer" />
+                    <img src={`https://picsum.photos/seed/p${i}/100/100`} alt="Patient" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                   </div>
                   <div>
                     <h5 className="font-bold text-text-dark">John Doe</h5>
@@ -65,6 +65,8 @@ export default function PatientStories() {
                   alt={video.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-all" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -122,11 +124,11 @@ export default function PatientStories() {
               <div key={i} className="rounded-[2.5rem] overflow-hidden shadow-soft border border-slate-100">
                 <div className="grid grid-cols-2">
                   <div className="relative">
-                    <img src={`https://picsum.photos/seed/before${i}/400/400`} alt="Before" referrerPolicy="no-referrer" />
+                    <img src={`https://picsum.photos/seed/before${i}/400/400`} alt="Before" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                     <div className="absolute top-4 left-4 bg-slate-900/60 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Before</div>
                   </div>
                   <div className="relative">
-                    <img src={`https://picsum.photos/seed/after${i}/400/400`} alt="After" referrerPolicy="no-referrer" />
+                    <img src={`https://picsum.photos/seed/after${i}/400/400`} alt="After" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                     <div className="absolute top-4 right-4 bg-primary/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">After</div>
                   </div>
                 </div>

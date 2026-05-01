@@ -91,7 +91,7 @@ export default function Blog() {
                 className="group flex flex-col"
               >
                 <div className="aspect-[16/10] rounded-3xl overflow-hidden mb-6 relative">
-                  <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" referrerPolicy="no-referrer" />
+                  <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold text-primary shadow-sm">
                     {post.category}
                   </div>

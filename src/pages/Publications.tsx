@@ -271,6 +271,8 @@ export default function Publications() {
                         alt="Tissue Engineering Book Cover" 
                         className="w-full h-full object-cover"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>
@@ -293,7 +295,7 @@ export default function Publications() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-primary/20 group"
                     >
-                      <img src="https://www.amazon.in/favicon.ico" alt="Amazon" className="w-5 h-5 brightness-0 invert" />
+                      <img src="https://www.amazon.in/favicon.ico" alt="Amazon" className="w-5 h-5 brightness-0 invert" referrerPolicy="no-referrer" />
                       Buy on Amazon
                       <ExternalLink className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                     </a>

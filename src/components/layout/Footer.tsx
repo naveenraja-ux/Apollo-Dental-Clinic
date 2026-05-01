@@ -37,6 +37,8 @@ export default function Footer() {
                 alt="Apollo Dental & Cosmetology Clinics" 
                 className="h-[42px] w-auto object-contain brightness-0 invert"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
               />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">

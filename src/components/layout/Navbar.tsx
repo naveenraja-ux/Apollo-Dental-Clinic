@@ -52,6 +52,7 @@ export default function Navbar() {
               alt="Apollo Dental & Cosmetology Clinics" 
               className="h-[48px] md:h-[58px] w-auto object-contain"
               referrerPolicy="no-referrer"
+              decoding="async"
             />
           </Link>
 

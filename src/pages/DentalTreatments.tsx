@@ -102,6 +102,7 @@ export default function DentalTreatments() {
               alt="Dental Background"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
+              decoding="async"
             />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f172c] via-[#0f172c]/80 to-transparent" />
@@ -186,6 +187,7 @@ export default function DentalTreatments() {
                     alt="Professional Dental Care" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     referrerPolicy="no-referrer"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                 </div>
@@ -291,6 +293,8 @@ export default function DentalTreatments() {
                     alt={item.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity" />
                 </div>

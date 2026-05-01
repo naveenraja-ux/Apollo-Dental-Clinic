@@ -169,6 +169,7 @@ export default function CosmetologyClinic() {
               alt="Cosmetology Background"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
+              decoding="async"
             />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f172c] via-[#0f172c]/80 to-transparent" />
@@ -253,6 +254,7 @@ export default function CosmetologyClinic() {
                   alt="Cosmetology Treatment"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
+                  decoding="async"
                 />
               </div>
               <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-accent/20 rounded-full blur-3xl -z-10" />
@@ -349,6 +351,8 @@ export default function CosmetologyClinic() {
                         alt={activeTreatment.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                         <div className="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary shadow-2xl transform group-hover:scale-110 transition-all duration-500">
@@ -397,6 +401,8 @@ export default function CosmetologyClinic() {
                     alt={treatment.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="p-6">

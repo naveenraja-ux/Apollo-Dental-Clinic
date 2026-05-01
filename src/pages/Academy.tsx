@@ -57,6 +57,7 @@ export default function Academy() {
               alt="Academy"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
+              decoding="async"
             />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
@@ -580,6 +581,8 @@ export default function Academy() {
                         alt={`Student ${i + 1}`}
                         className="w-full h-full object-contain bg-white"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   ))}
@@ -654,6 +657,8 @@ export default function Academy() {
                             alt={video.title}
                             className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                             referrerPolicy="no-referrer"
+                            loading="lazy"
+                            decoding="async"
                           />
                           <div className="absolute inset-0 flex items-center justify-center z-20">
                             <div className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary shadow-2xl transform group-hover:scale-110 transition-all duration-500">

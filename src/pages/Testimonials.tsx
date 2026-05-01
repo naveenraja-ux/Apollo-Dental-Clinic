@@ -128,6 +128,8 @@ export default function Testimonials() {
                       src={item.thumbnail} 
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" 
                       referrerPolicy="no-referrer" 
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary shadow-2xl transform group-hover:scale-110 transition-all duration-500">
@@ -150,6 +152,8 @@ export default function Testimonials() {
                       src={item.url} 
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
                       referrerPolicy="no-referrer" 
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-slate-900/0 md:group-hover:bg-slate-900/20 transition-all duration-500 flex items-center justify-center">
                       <div className="w-10 h-10 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/30 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all scale-100 md:scale-50 md:group-hover:scale-100 duration-500">
@@ -171,6 +175,8 @@ export default function Testimonials() {
                       src={item.url} 
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
                       referrerPolicy="no-referrer" 
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-slate-900/0 md:group-hover:bg-slate-900/20 transition-all duration-500 flex items-center justify-center">
                       <div className="w-10 h-10 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/30 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all scale-100 md:scale-50 md:group-hover:scale-100 duration-500">
@@ -297,6 +303,7 @@ export default function Testimonials() {
                   src={activeMedia.url} 
                   className="w-full h-full object-contain bg-black/20" 
                   referrerPolicy="no-referrer" 
+                  decoding="async"
                 />
               )}
             </motion.div>

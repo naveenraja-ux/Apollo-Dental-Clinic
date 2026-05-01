@@ -54,6 +54,7 @@ export default function About() {
             alt="Clinic Background" 
             className="w-full h-full object-cover scale-105 opacity-30"
             referrerPolicy="no-referrer"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]" />
         </div>
@@ -256,6 +257,8 @@ export default function About() {
                   alt="Dr. Manimekalai"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="absolute -bottom-6 -right-2 bg-white p-5 rounded-2xl shadow-premium z-20 max-w-[220px] border border-slate-100 hidden sm:block">
